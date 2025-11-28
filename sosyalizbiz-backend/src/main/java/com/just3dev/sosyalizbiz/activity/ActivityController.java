@@ -4,9 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/activities")
+@RequestMapping("/api/activities")
 public class ActivityController {
 
     private final ActivityService activityService;
@@ -16,7 +17,7 @@ public class ActivityController {
     }
 
     @GetMapping
-    public ResponseEntity<Activity> getActivity(@RequestParam Long id) {
+    public ResponseEntity<Activity> getActivity(@RequestParam UUID id) {
         return ResponseEntity.ok(activityService.getActivity(id));
     }
 
@@ -26,19 +27,20 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ResponseEntity<Activity> createActivity(@RequestBody Activity activity) {
-        activityService.createActivity(activity);
+    public ResponseEntity<Activity> createActivity(@RequestBody CreateActivityDTO request) {
+        Activity activity = activityService.createActivity(request);
+
         return ResponseEntity.ok(activity);
     }
 
     @PutMapping
-    public ResponseEntity<Activity> updateActivity(@RequestParam Long id, @RequestBody Activity activity) {
+    public ResponseEntity<Activity> updateActivity(@RequestParam UUID id, @RequestBody Activity activity) {
         activityService.updateActivity(id, activity);
         return ResponseEntity.ok(activity);
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteActivity(@RequestParam Long id) {
+    public ResponseEntity<Void> deleteActivity(@RequestParam UUID id) {
         activityService.deleteActivity(id);
         return ResponseEntity.ok().build();
     }

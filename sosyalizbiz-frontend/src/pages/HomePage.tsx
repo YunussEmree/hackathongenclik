@@ -4,9 +4,14 @@ import NavbarPage from '../components/navbar/Navbar.tsx';
 import Card from '../components/card/Card.tsx';
 import Filter from '../components/filter/Filter.tsx';
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { getActivities } from '../utils/api.ts';
+
+
+const activities = await getActivities();
 
 
 const HomePage: React.FC = () => {
+
     return (
         <div className='container'>
             <NavbarPage />
@@ -21,59 +26,32 @@ const HomePage: React.FC = () => {
                 </div>
             </div>
 
-            <div className='cards'>
+            <div className='cards'> 
+                {activities.map(activity => (
                 <Card
-                    id="1"
-                    title="Etkinlik 1"
-                    person={{ name: "Ali Veli" }}
-                    currentAttendees={10}
-                    maxAttendees={20}
-                    date={new Date('2024-07-01')}
-                    createdAt={new Date('2024-06-15T10:00:00')}
-                    content="Açıklamayı okumak için tıklayın."
-                    place="İstanbul"
-                />
+                    key ={activity.id}
+                    id={activity.id}
+                    title={activity.title}
+                    personName={activity.personName}
+                    currentAttendees={activity.currentAttendees}
+                    maxAttendees={activity.maxAttendees}
+                    date={new Date(activity.date)}
+                    createdAt={new Date(activity.createdAt)}
+                    content={activity.description}
+                    place={activity.location}
 
-                <Card
-                    id="2"
-                    title="Etkinlik 2"
-                    person={{ name: "kırkdokuzelli" }}
-                    currentAttendees={3}
-                    maxAttendees={5}
-                    date={new Date('2024-07-01')}
-                    createdAt={new Date('2024-06-15T10:00:00')}
-                    content="Açıklamayı okumak için tıklayın."
-                    place="Ankara"
                 />
+                ))}
 
-                <Card
-                    id="3"
-                    title="Voleybol "
-                    person={{ name: "Emir Enes Akalın" }}
-                    currentAttendees={5}
-                    maxAttendees={10}
-                    date={new Date('2024-07-01')}
-                    createdAt={new Date('2024-06-15T10:00:00')}
-                    content="Açıklamayı okumak için tıklayın."
-                    place="Antalya"
-                />
 
-                <Card
-                    id="4"
-                    title="Golf Turnuvası"
-                    person={{ name: "Göktuğ Berke" }}
-                    currentAttendees={1}
-                    maxAttendees={25}
-                    date={new Date('2024-07-01')}
-                    createdAt={new Date('2024-06-15T10:00:00')}
-                    content="Açıklamayı okumak için tıklayın."
-                    place="Akdeniz Üniversitesi"
-                />
             </div>
 
         </div>
     );
 };
+
+
+
 
 export default HomePage;
 

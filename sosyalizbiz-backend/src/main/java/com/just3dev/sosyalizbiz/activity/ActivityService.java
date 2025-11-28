@@ -3,6 +3,7 @@ package com.just3dev.sosyalizbiz.activity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ActivityService implements IActivityService {
@@ -14,7 +15,7 @@ public class ActivityService implements IActivityService {
     }
 
     @Override
-    public Activity getActivity(Long id) {
+    public Activity getActivity(UUID id) {
         return activityRepository.findById(id).orElse(null);
     }
 
@@ -24,24 +25,29 @@ public class ActivityService implements IActivityService {
     }
 
     @Override
-    public Activity createActivity(Activity activity) {
-        if(activityRepository.findById(activity.getId()).isPresent()) {
-            throw new ActivityAlreadyExistsException("Activity with id " + activity.getId() + " already exists.");
-        } else {
-            activityRepository.save(activity);
-        }
+    public Activity createActivity(CreateActivityDTO request) {
+        Activity activity = new Activity();
+        activity.setTitle(request.getTitle());
+        activity.setDescription(request.getDescription());
+        activity.setLocation(request.getLocation());
+        activity.setMaxAttendees(request.getMaxAttendees());
+        activity.setCurrentAttendees(request.getCurrentAttendees());
+        activity.setActivityDate(request.getActivityDate());
+
+        activityRepository.save(activity);
+
         return activity;
     }
 
     @Override
-    public Activity updateActivity(Long id, Activity activity) {
+    public Activity updateActivity(UUID id, Activity activity) {
         activity.setId(id);
         activityRepository.save(activity);
         return activity;
     }
 
     @Override
-    public void deleteActivity(Long id) {
+    public void deleteActivity(UUID id) {
         if (activityRepository.findById(id).isPresent()) {
             activityRepository.deleteById(id);
         } else {
