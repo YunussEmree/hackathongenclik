@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/activities")
+@RequestMapping("/api/activities")
 public class ActivityController {
 
     private final ActivityService activityService;

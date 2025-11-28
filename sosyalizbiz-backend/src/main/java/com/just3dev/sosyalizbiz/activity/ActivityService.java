@@ -26,7 +26,6 @@ public class ActivityService implements IActivityService {
 
     @Override
     public Activity createActivity(CreateActivityDTO request) {
-
         Activity activity = new Activity();
         activity.setTitle(request.getTitle());
         activity.setDescription(request.getDescription());

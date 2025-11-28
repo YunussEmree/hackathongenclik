@@ -1,12 +1,9 @@
 import React from 'react';
 import './Card.css';
-interface person {
-    name: string;
-}
 interface CardProps {
     id: string;
     title: string;
-    person: person;
+    personName: string;
     currentAttendees: number;
     maxAttendees: number;
     date: Date;
@@ -14,14 +11,13 @@ interface CardProps {
     content: string;
     place: string;
 }
-const Card: React.FC<CardProps> = ({ id, title, content, person, currentAttendees, maxAttendees, date, createdAt, place }) => {
+const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAttendees, maxAttendees, date, createdAt, place }) => {
     return (
         <>
-            <div>{id}</div>
             <div className="card" >
                 <div className="card-header">
                     <h2>{title}</h2>
-                    <h3>{person.name}</h3>
+                    <h3>{personName}</h3>
                 </div>
                 <div className="card-content">
                     <div className="card-element">
@@ -76,7 +72,7 @@ const Card: React.FC<CardProps> = ({ id, title, content, person, currentAttendee
 
                 </div>
                 <div className="card-button" >
-                    <button>Etkinliğe Katıl</button>
+                    <button onClick={() => attendTheEvent(id)}>Etkinliğe Katıl</button>
                 </div>
 
             </div>
@@ -85,4 +81,9 @@ const Card: React.FC<CardProps> = ({ id, title, content, person, currentAttendee
 
     );
 };
+
+function attendTheEvent(id: string) {
+    console.log(`Etkinliğe katılındı: ${id}`);
+}   
+
 export default Card;
