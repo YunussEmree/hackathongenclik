@@ -1,5 +1,5 @@
 import { ApiError } from './api.ts';
-import type { GeneralErrorResponse } from "../types/api.ts";
+import type { GeneralErrorResponse } from "../types/api";
 
 export interface ErrorInfo {
     message: string;
@@ -69,7 +69,7 @@ const extractErrorMessages = (generalError: GeneralErrorResponse): string => {
     }
 
     return generalError.errorMessages
-        .map((err) => err.message)
+        .map((err: { message: string }) => err.message)
         .filter(Boolean)
         .join('; ');
 };
