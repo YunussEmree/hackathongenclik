@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import HistoryPage from "./pages/HistoryPage";
 import NotFoundPage from './pages/NotFoundPage';
 
-const AppRoutes: React.FC = () => (<Router>
+const AppRoutes: React.FC = () => (<Router basename={import.meta.env.BASE_URL}>
     <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
