@@ -26,6 +26,15 @@ public class ActivityController {
         return ResponseEntity.ok(activityService.getAllActivities());
     }
 
+    @PostMapping("/attend")
+    public ResponseEntity<Activity> attendActivity(@RequestParam String activityId, @RequestParam String userId) {
+        UUID activityUUID = UUID.fromString(activityId);
+
+        System.out.println("ActivityController: attendActivity called with activityId=" + activityId + " and userId=" + userId);
+        Activity activity = activityService.attendActivity(activityUUID, userId);
+        return ResponseEntity.ok(activity);
+    }
+
     @PostMapping
     public ResponseEntity<Activity> createActivity(@RequestBody CreateActivityDTO request) {
         Activity activity = activityService.createActivity(request);

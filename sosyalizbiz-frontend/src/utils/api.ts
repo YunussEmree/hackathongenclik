@@ -84,3 +84,43 @@ export const getActivity = async (id: string): Promise<Activity> => {
         throw error;
     }
 };
+
+export const attendActivity = async (activityId: string, userId: string): Promise<void> => {
+    try {
+        console.log(`Attending activity ${activityId} for user ${userId}`);
+        const response = await fetch(`${API_BASE_URL}/activities/attend?activityId=${activityId}&userId=${userId}`, { 
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Error attending activity:", error);
+        throw error;
+    }
+};
+
+export const getCurrentUser = async (): Promise<{ email: string ; id: string ; name: string }> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/user/current-user`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }); 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching current user:", error);
+        throw error;
+    }   
+};

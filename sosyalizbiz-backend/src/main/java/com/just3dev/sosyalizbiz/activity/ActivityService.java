@@ -1,5 +1,7 @@
 package com.just3dev.sosyalizbiz.activity;
 
+import com.just3dev.sosyalizbiz.user.User;
+import com.just3dev.sosyalizbiz.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +11,11 @@ import java.util.UUID;
 public class ActivityService implements IActivityService {
 
     private final ActivityRepository activityRepository;
+    private final UserRepository userRepository;
 
-    public ActivityService(ActivityRepository activityRepository) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository) {
         this.activityRepository = activityRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -36,6 +40,21 @@ public class ActivityService implements IActivityService {
 
         activityRepository.save(activity);
 
+        return activity;
+    }
+
+    @Override
+    public Activity attendActivity(UUID activityId, String userId) {
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new ActivityNotFoundException("Activity with id " + activityId + " not found."));
+
+        activity.setCurrentAttendees(activity.getCurrentAttendees() + 1);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User with id " + userId + " not found."));
+
+        activity.addAttendee( user );
+
+        activityRepository.save(activity);
         return activity;
     }
 
