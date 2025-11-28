@@ -1,0 +1,41 @@
+.nav-content{
+    background-color: #eb0d0d;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-side{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.left-element{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 201px;
+}
+
+.center-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    left: -75px;
+}
+
+.right-side{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px
+}
+
