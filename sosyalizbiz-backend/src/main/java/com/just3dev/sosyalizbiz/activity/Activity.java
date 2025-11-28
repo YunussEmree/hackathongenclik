@@ -19,7 +19,7 @@ public class Activity {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "id")
+    @Column(name = "description")
     private String description;
 
     //@ManyToMany
