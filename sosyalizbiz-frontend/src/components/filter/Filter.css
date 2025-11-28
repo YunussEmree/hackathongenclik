@@ -1,9 +1,3 @@
-/* .select{
-    width: 100%;
-    padding: 8px;
-} */
-
-/* From Uiverse.io by 3bdel3ziz-T */ 
 .select {
   width: fit-content;
   cursor: pointer;
@@ -11,10 +5,11 @@
   transition: 300ms;
   color: white;
   overflow: hidden;
+  width: 251px;
 }
 
 .selected {
-  background-color: #2a2f3b;
+  background-color: #eb0d0d;
   padding: 5px;
   margin-bottom: 3px;
   border-radius: 5px;
@@ -24,6 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 251px;
 }
 
 .arrow {
@@ -42,16 +38,18 @@
   flex-direction: column;
   border-radius: 5px;
   padding: 5px;
-  background-color: #2a2f3b;
+  background-color: #eb0d0d;
   position: relative;
   top: -100px;
   opacity: 0;
   transition: 300ms;
+  width: 251px;
 }
 
 .select:hover > .options {
   opacity: 1;
   top: 0;
+  width: 251px;
 }
 
 .select:hover > .selected .arrow {
@@ -62,12 +60,12 @@
   border-radius: 5px;
   padding: 5px;
   transition: 300ms;
-  background-color: #2a2f3b;
-  width: 150px;
+  background-color: #eb0d0d;
+  width: 251px;
   font-size: 15px;
 }
 .option:hover {
-  background-color: #323741;
+  background-color: #eb0d0d;
 }
 
 .options input[type="radio"] {
@@ -85,19 +83,23 @@
   display: none;
 }
 
-.options input[type="radio"]#all:checked + label {
+.options input[type="radio"]#none:checked + label {
   display: none;
 }
 
-.select:has(.options input[type="radio"]#all:checked) .selected::before {
+.select:has(.options input[type="radio"]#none:checked) .selected::before {
   content: attr(data-default);
 }
-.select:has(.options input[type="radio"]#option-1:checked) .selected::before {
+.select:has(.options input[type="radio"]#newestActivity:checked) .selected::before {
   content: attr(data-one);
 }
-.select:has(.options input[type="radio"]#option-2:checked) .selected::before {
+.select:has(.options input[type="radio"]#oldestActivity:checked) .selected::before {
   content: attr(data-two);
 }
-.select:has(.options input[type="radio"]#option-3:checked) .selected::before {
+.select:has(.options input[type="radio"]#closestActivity:checked) .selected::before {
   content: attr(data-three);
+}
+
+.select:has(.options input[type="radio"]#furthestActivity:checked) .selected::before {
+  content: attr(data-four);
 }
