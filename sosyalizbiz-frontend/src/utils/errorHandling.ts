@@ -1,4 +1,4 @@
-import { ApiError } from './api';
+import { ApiError } from './api.ts';
 import type { GeneralErrorResponse } from "../types/api.ts";
 
 export interface ErrorInfo {
