@@ -1,20 +1,25 @@
 package com.just3dev.sosyalizbiz.activity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Activity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    private Long id;
+    private UUID id;
 
     @Column(name = "title")
     private String title;
@@ -47,5 +52,9 @@ public class Activity {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Date updatedDate;
+
+
+
+
 
 }

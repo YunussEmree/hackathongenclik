@@ -1,13 +1,14 @@
 package com.just3dev.sosyalizbiz.activity;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface IActivityService {
 
-    Activity getActivity(Long id);
+    Activity getActivity(UUID id);
     List<Activity> getAllActivities();
-    Activity createActivity(Activity activity);
-    Activity updateActivity(Long id, Activity activity);
-    void deleteActivity(Long id);
+    Activity createActivity(CreateActivityDTO request);
+    Activity updateActivity(UUID id, Activity activity);
+    void deleteActivity(UUID id);
 
 }
