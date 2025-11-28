@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding-left: 20px;
+    margin-left: 40px;
 }
 
 .left-element{
@@ -20,22 +20,36 @@
     font-weight: bold;
     cursor: pointer;
     width: 201px;
+    margin-right: 20px;
 }
 
-.center-side{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    position: relative;
-    left: -75px;
+.left-element:hover{
+    text-decoration: underline;
+    margin-right: 20px;
 }
 
+.home{
+    width: 115px;
+}
+
+.profile{
+    width: 86px;
+}
 .right-side{
-    width: 200px;
+    width: 700px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 20px
+    justify-content: end;
+    margin-right: 20px;
+}
+.toggle{
+    cursor: pointer;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.toggle:hover{
+    color: #06e82b;
 }
 

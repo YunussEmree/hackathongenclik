@@ -2,11 +2,25 @@ import React from 'react';
 import './HomePage.css';
 import NavbarPage from '../components/navbar/Navbar.tsx';
 import Card from '../components/card/Card.tsx';
+import Filter from '../components/filter/Filter.tsx';
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
 
 const HomePage: React.FC = () => {
     return (
         <div className='container'>
             <NavbarPage />
+            <div className="dynamicIsland ">
+                <div className="search-bar">
+                    <FaMagnifyingGlass />
+
+                    <input type="text" placeholder="Etkinlik Ara..." />
+                </div>
+                <div className="filter">
+                    <Filter />
+                </div>
+            </div>
+
             <div className='cards'>
                 <Card
                     id="1"

@@ -14,10 +14,9 @@ interface CardProps {
     content: string;
     place: string;
 }
-const Card: React.FC<CardProps> = ({ id, title, content, person, currentAttendees, maxAttendees, date, createdAt, place }) => {
+const Card: React.FC<CardProps> = ({ title, content, person, currentAttendees, maxAttendees, date, createdAt, place }) => {
     return (
         <>
-            <div>{id}</div>
             <div className="card" >
                 <div className="card-header">
                     <h2>{title}</h2>
