@@ -1,5 +1,6 @@
 import React from 'react';
 import './Card.css';
+import { attendActivity, getCurrentUser } from '../../utils/api';
 interface CardProps {
     id: string;
     title: string;
@@ -31,7 +32,7 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
 
                     <div className="card-element">
                         <div className='card-label'>
-                            <h4>Tarih</h4>
+                            <h4>Etkinlik Tarihi</h4>
                         </div>
                         <div className="card-value">
                             <p>{date.toLocaleDateString()}</p>
@@ -82,8 +83,12 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
     );
 };
 
-function attendTheEvent(id: string) {
-    console.log(`Etkinliğe katılındı: ${id}`);
+function attendTheEvent(activityId: string) {
+    getCurrentUser().then(currentuser => {
+        attendActivity(activityId, currentuser.id.toString());
+    }).catch(error => {
+        console.error("Error attending activity:", error);
+    });
 }   
 
 export default Card;

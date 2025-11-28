@@ -1,5 +1,6 @@
 package com.just3dev.sosyalizbiz.activity;
 
+import com.just3dev.sosyalizbiz.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -27,12 +29,11 @@ public class Activity {
     @Column(name = "description")
     private String description;
 
-    //@ManyToMany
-    //@Column(name = "activity_users")
-    //private List<ActivityUser> users;
+    @ManyToMany(mappedBy = "activity", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<User> users; //attendees
 
-    //@Column(name = "activity_creator")
-    //ActivityUser creater;
+//    @ManyToOne
+//    private User creater;
 
     @Column(name = "location")
     private String location;
@@ -54,6 +55,10 @@ public class Activity {
     private Date updatedDate;
 
 
+    public void addAttendee(User user) {
+        this.users.add(user);
+        this.currentAttendees = this.users.size();
+    }
 
 
 

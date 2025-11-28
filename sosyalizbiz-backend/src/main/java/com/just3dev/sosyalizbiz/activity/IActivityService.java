@@ -9,6 +9,7 @@ public interface IActivityService {
     List<Activity> getAllActivities();
     Activity createActivity(CreateActivityDTO request);
     Activity updateActivity(UUID id, Activity activity);
+    Activity attendActivity(UUID activityId, String userId);
     void deleteActivity(UUID id);
 
 }
