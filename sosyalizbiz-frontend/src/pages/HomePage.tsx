@@ -1,5 +1,6 @@
 import React from 'react';
 import './HomePage.css';
+import NavbarPage from '../components/navbar/Navbar.tsx';
 import Card from '../components/card/Card.tsx';
 import { getActivities } from '../utils/api.ts';
 
@@ -11,7 +12,8 @@ const HomePage: React.FC = () => {
 
     return (
         <div className='container'>
-            <div className="navbar"></div>
+            <NavbarPage />
+
 
             <div className='cards'> 
                 {activities.map(activity => (
