@@ -7,6 +7,9 @@ on:
     paths:
       - 'sosyalizbiz-frontend/**'
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,9 +29,17 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build and Deploy to GitHub Pages
+      - name: Build Project
         env:
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           VITE_GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+          npx gh-pages -d dist -r https://git:${GH_TOKEN}@github.com/${{ github.repository }}.git
