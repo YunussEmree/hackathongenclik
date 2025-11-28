@@ -1,11 +1,12 @@
 import React from 'react';
 import './HomePage.css';
+import NavbarPage from '../components/navbar/Navbar.tsx';
 import Card from '../components/card/Card.tsx';
 
 const HomePage: React.FC = () => {
     return (
         <div className='container'>
-            <div className="navbar"></div>
+            <NavbarPage />
             <div className='cards'>
                 <Card
                     id="1"
