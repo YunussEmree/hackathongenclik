@@ -13,22 +13,8 @@ import java.util.Map;
 @RequestMapping("/api/user")
 public class UserController {
 
-    private final UserRepository userRepository;
-
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @GetMapping
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-
-        if(userRepository.findById(principal.getAttribute("sub")).isPresent() == false) {
-            User newUser = new User();
-            newUser.setId(principal.getAttribute("sub"));
-            newUser.setName(principal.getAttribute("name"));
-            userRepository.save(newUser);
-        }
-
         return Collections.singletonMap("name", principal.getAttribute("name"));
     }
 }
