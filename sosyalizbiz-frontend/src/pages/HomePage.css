@@ -30,6 +30,7 @@
     align-items: center;
     justify-content: start;
     margin-left: 35px;
+    color: black;
 }
 
 .search-bar input{
@@ -40,6 +41,7 @@
     font-size: 16px;
     margin-left: 10px;
     background-color: transparent;
+    color: black;
 }
 
 .navbar{
@@ -51,14 +53,15 @@
 }
 
 .filter{
-    margin: 20px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
     position: relative;
     top: 50px;
-    margin-right:125px
+    margin-right:125px;
+    width: 251px;
 }
 
 .cards{
