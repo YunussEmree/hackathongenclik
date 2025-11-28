@@ -1,4 +1,5 @@
 import type {
+    Activity,
     GeneralErrorResponse,
 } from "../types/api";
 
@@ -18,7 +19,7 @@ export class ApiError extends Error {
     }
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "api";
 
 export const logout = async (): Promise<void> => {
     try {
@@ -39,3 +40,47 @@ export const logout = async (): Promise<void> => {
     }
 };
 
+export const getActivities = async (): Promise<Activity[]> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/activities/all`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error("Error fetching activities:", error);
+        throw error;
+    }
+};
+
+export const getActivity = async (id: string): Promise<Activity> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/activities/${id}`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching activity:", error);
+        throw error;
+    }
+};
