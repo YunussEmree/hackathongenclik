@@ -10,10 +10,11 @@ import type { Activity } from '../types/api';
 
 const HomePage: React.FC = () => {
     const [activities, setActivities] = useState<Activity[]>([]);
+    const [currentSort, setCurrentSort] = useState<string | undefined>(undefined);
 
     const fetchActivities = async () => {
         try {
-            const data = await getActivities();
+            const data = await getActivities(currentSort);
             setActivities(data);
         } catch (error) {
             console.error("Error fetching activities:", error);
@@ -22,7 +23,11 @@ const HomePage: React.FC = () => {
 
     useEffect(() => {
         fetchActivities();
-    }, []);
+    }, [currentSort]);
+
+    const handleSortChange = (sort: string) => {
+        setCurrentSort(sort);
+    };
 
     return (
         <div className='container'>
@@ -34,7 +39,7 @@ const HomePage: React.FC = () => {
                     <input type="text" placeholder="Etkinlik Ara..." />
                 </div>
                 <div className="filter">
-                    <Filter />
+                    <Filter onSortChange={handleSortChange} />
                 </div>
             </div>
 

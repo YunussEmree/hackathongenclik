@@ -22,8 +22,11 @@ public class ActivityController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Activity>> getAllActivities() {
-        return ResponseEntity.ok(activityService.getAllActivities());
+    public ResponseEntity<List<Activity>> getAllActivities(@RequestParam(required = false) String sortBy) {
+        if ("recommendedActiviy".equals(sortBy)) {
+            System.out.println("LOG: 'Önerilen Aktiviteler' (recommendedActiviy) filter requested. Backend implementation is pending.");
+        }
+        return ResponseEntity.ok(activityService.getAllActivities(sortBy));
     }
 
     @PostMapping("/attend")

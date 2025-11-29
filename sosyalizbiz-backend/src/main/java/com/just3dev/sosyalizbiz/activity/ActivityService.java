@@ -2,6 +2,7 @@ package com.just3dev.sosyalizbiz.activity;
 
 import com.just3dev.sosyalizbiz.user.User;
 import com.just3dev.sosyalizbiz.user.UserRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +25,27 @@ public class ActivityService implements IActivityService {
     }
 
     @Override
-    public List<Activity> getAllActivities() {
-        return activityRepository.findAll();
+    public List<Activity> getAllActivities(String sortBy) {
+        Sort sort = Sort.unsorted();
+        if (sortBy != null) {
+            switch (sortBy) {
+                case "newestActivity":
+                    sort = Sort.by(Sort.Direction.DESC, "createdDate");
+                    break;
+                case "oldestActivity":
+                    sort = Sort.by(Sort.Direction.ASC, "createdDate");
+                    break;
+                case "closestActivity":
+                    sort = Sort.by(Sort.Direction.ASC, "activityDate");
+                    break;
+                case "furthestActivity":
+                    sort = Sort.by(Sort.Direction.DESC, "activityDate");
+                    break;
+                default:
+                    break;
+            }
+        }
+        return activityRepository.findAll(sort);
     }
 
     @Override

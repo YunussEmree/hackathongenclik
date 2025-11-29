@@ -103,3 +103,8 @@
 .select:has(.options input[type="radio"]#furthestActivity:checked) .selected::before {
   content: attr(data-four);
 }
+
+.select:has(.options input[type="radio"]#recommendedActiviy:checked) .selected::before {
+  content: attr(data-five);
+}
+
