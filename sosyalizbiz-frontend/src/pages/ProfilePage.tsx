@@ -2,17 +2,23 @@ import React from 'react';
 import './ProfilePage.css';
 //import { attendActivity } from '../utils/api';
 import Navbar from '../components/navbar/Navbar';
-import Block from '../components/infoBlock/Block';
-import { attendActivity } from '../utils/api';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 
-interface BlockProps {
-  label: string;
-  value: string | number | React.ReactNode;
+function BasicRating() {
+  const starNumber = 4;
+
+  return (
+    <Box sx={{ '& > legend': { mt: 2 } }}>
+      <Rating name="disabled" value={starNumber} disabled />
+
+    </Box>
+  );
 }
 
+
 const values = {
-  fullname: 'John Doe',
-  username: 'johndoe',
+  fullname: 'Emir Enes Akalın',
   email: 'yunusemre@gmail.com',
   imageUrl: 'https://lh3.googleusercontent.com/a/ACg8ocKnugXnXxsuBHWgU8dmlVTE5xsOKP3J_hZCvg5-lGUGmm_FBA=s96-c',
   attendActivity: 5,
@@ -20,7 +26,7 @@ const values = {
   upcomingActivity: 2,
   reliablilityScore: 95,
 }
-const ProfilePage: React.FC<BlockProps> = () => {
+const ProfilePage: React.FC = () => {
   return <>
     <Navbar />
     <div className="profile-page">
@@ -31,9 +37,14 @@ const ProfilePage: React.FC<BlockProps> = () => {
         </div>
 
         <div className="center">
-          <h1 className="profile-username">{values.username}</h1>
+          <h1 className="profile-username">{values.fullname}</h1>
+          <div className="rating">
+            <BasicRating />
+            <p className="percentage">8.5/10</p>
+          </div>
+
           <h2 className="profile-email">{values.email}</h2>
-          <h2 className="profile-username">{values.username}</h2>
+
         </div>
 
         <div className="right">
@@ -59,6 +70,53 @@ const ProfilePage: React.FC<BlockProps> = () => {
               {values.reliablilityScore}
             </span> % güvenilirlik skoruna sahipsiniz</p>
           </div>
+        </div>
+
+        <div className="hobbies-and-rosets">
+          <div className="hobbies">
+            <h3>Hobiler</h3>
+            <div className="hobby">
+              <span className="hobby-tag">Kitap Okuma</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Yüzme</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Yemek Yapma</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Kitap Okuma</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Yüzme</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Yemek Yapma</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Kitap Okuma</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Yüzme</span>
+            </div>
+            <div className="hobby">
+              <span className="hobby-tag">Yemek Yapma</span>
+            </div>
+          </div>
+
+          <div className="rosets">
+            <h3>Rozetler</h3>
+            <div className="roset-item">
+              <span className="roset-tag">Voleybolcu</span>
+            </div>
+            <div className="roset-item">
+              <span className="roset-tag">Stratejist</span>
+            </div>
+            <div className="roset-item">
+              <span className="roset-tag">Köpekbalığı</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

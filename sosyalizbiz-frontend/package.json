@@ -13,6 +13,9 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.5",
     "@tailwindcss/vite": "^4.1.17",
     "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
