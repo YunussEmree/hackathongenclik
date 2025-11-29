@@ -67,9 +67,9 @@ public class MailService implements IMailService{
         String content = " Etkinliğiniz '" + eventname + "' 2 saat içinde başlayacaktır. Lütfen zamanında katılmayı unutmayın!"
                 + "\nEtkinliğe katılmadığınız takdirde SosyalizBiz hesabınızın güvenilirlik skoru düşebilir."
                 + "\nGüvenilirlik skorunuzun düşük olması, gelecekteki etkinliklere katılımınızı olumsuz etkileyebilir."
-                + "\n\nEtkinlik Adı: " + eventname
+                + "\nEtkinlik Adı: " + eventname
                 + "\nEtkinlik Tarihi ve Saati: " + activityDate.toString()
-                + "\nSosyalizBiz ile kalın!";
+                + "\n\nSosyalizBiz ile kalın!";
 
         Date reminderDate = new Date(activityDate.getTime() - 2 * 60 * 60 * 1000);
         sendMailWithTimer(to, subject, content, reminderDate);
