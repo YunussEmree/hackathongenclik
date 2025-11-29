@@ -1,5 +1,6 @@
 package com.just3dev.sosyalizbiz.activity;
 
+import com.just3dev.sosyalizbiz.mail.IMailService;
 import com.just3dev.sosyalizbiz.user.User;
 import com.just3dev.sosyalizbiz.user.UserRepository;
 import org.springframework.data.domain.Sort;
@@ -13,10 +14,12 @@ public class ActivityService implements IActivityService {
 
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
+    private final IMailService mailService;
 
-    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, IMailService mailService) {
         this.activityRepository = activityRepository;
         this.userRepository = userRepository;
+        this.mailService = mailService;
     }
 
     @Override
@@ -77,6 +80,7 @@ public class ActivityService implements IActivityService {
                 .orElseThrow(() -> new RuntimeException("User with id " + userId + " not found."));
 
         activity.addAttendee( user );
+        mailService.sendReminderMail(user.getEmail(), activity.getTitle() ,activity.getActivityDate());
 
         activityRepository.save(activity);
         return activity;
