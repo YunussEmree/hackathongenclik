@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class User {
 
     @Id
@@ -31,6 +30,19 @@ public class User {
     )
     @JsonIgnore
     private List<Activity> activity = new ArrayList<>();
+
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    public User(String id, String name, String email, String location) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.location = location;
+    }
 
     public UserDTO toDTO() {
         UserDTO dto = new UserDTO();
