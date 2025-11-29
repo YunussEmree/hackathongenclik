@@ -2,8 +2,6 @@ import React from 'react';
 import './ProfilePage.css';
 //import { attendActivity } from '../utils/api';
 import Navbar from '../components/navbar/Navbar';
-import Block from '../components/infoBlock/Block';
-import { attendActivity } from '../utils/api';
 
 interface BlockProps {
   label: string;
@@ -20,7 +18,7 @@ const values = {
   upcomingActivity: 2,
   reliablilityScore: 95,
 }
-const ProfilePage: React.FC<BlockProps> = () => {
+const ProfilePage: React.FC = () => {
   return <>
     <Navbar />
     <div className="profile-page">
