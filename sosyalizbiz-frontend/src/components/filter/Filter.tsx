@@ -15,8 +15,7 @@ const Filter: React.FC<FilterProps> = ({ onSortChange }) => {
         { id: 'newestActivity', label: 'En Yeni Oluşturulan Aktiviteler' },
         { id: 'oldestActivity', label: 'En Eski Oluşturulan Aktiviteler' },
         { id: 'closestActivity', label: 'En Yakın Sürede Başlayacak Aktiviteler' },
-        { id: 'furthestActivity', label: 'En Geç Sürede Başlayacak Aktiviteler' },
-        { id: 'recommendedActiviy', label: 'Önerilen Aktiviteler' },
+        { id: 'furthestActivity', label: 'En Geç Sürede Başlayacak Aktiviteler' }
     ];
 
     return (
