@@ -3,10 +3,6 @@ import './ProfilePage.css';
 //import { attendActivity } from '../utils/api';
 import Navbar from '../components/navbar/Navbar';
 
-interface BlockProps {
-  label: string;
-  value: string | number | React.ReactNode;
-}
 
 const values = {
   fullname: 'John Doe',
