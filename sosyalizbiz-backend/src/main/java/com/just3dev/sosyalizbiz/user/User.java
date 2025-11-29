@@ -1,5 +1,6 @@
 package com.just3dev.sosyalizbiz.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.just3dev.sosyalizbiz.activity.Activity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,6 +26,7 @@ public class User {
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "activity_id") }
     )
+    @JsonIgnore
     private List<Activity> activity;
 
     public User(String id, String name, String email) {
