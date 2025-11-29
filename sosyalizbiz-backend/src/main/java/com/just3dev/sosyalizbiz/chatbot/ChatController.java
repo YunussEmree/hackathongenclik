@@ -4,10 +4,7 @@ import com.just3dev.sosyalizbiz.activity.ActivityService;
 import com.just3dev.sosyalizbiz.user.UserRepository;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/chatbot")
@@ -30,8 +27,16 @@ public class ChatController {
     public String chat(@RequestBody String message) {
         ChatClient.ChatClientRequestSpec req = chatClient.prompt();
         req.tools(new ChatBotTools(activityService, userRepository));
-        req.system("Sohbetiz biz adlı bir platformun yapay zeka ajanısın" +
+        req.system("Sosyaliz Biz adlı bir platformun yapay zeka ajanısın" +
                 "Kişi tool kullanmanı isterse sana verilen toolları kullan.");
         return req.user(message).call().content();
+    }
+
+    @GetMapping("/rate-issue")
+    public int rateIssue(String reportDescription){
+        ChatClient.ChatClientRequestSpec req = chatClient.prompt();
+        req.system("Kullanıcıların bildirdiği sorunları 0 dan 10 a kadar derecelendiren bir yapay zeka ajanısın. " +
+                "0 en düşük 10 en yüksek puandır. Sadece sayısal değer döndür.");
+        return Integer.parseInt(req.user(reportDescription).call().content());
     }
 }
