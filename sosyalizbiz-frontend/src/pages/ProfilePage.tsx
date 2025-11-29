@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProfilePage.css';
 //import { attendActivity } from '../utils/api';
 import Navbar from '../components/navbar/Navbar';
@@ -31,6 +31,7 @@ const values = {
   reliablilityScore: 95,
 }
 const ProfilePage: React.FC = () => {
+  const [hover, setHover] = useState(false);
   return <>
     <Navbar />
     <div className="profile-page">
@@ -73,11 +74,14 @@ const ProfilePage: React.FC = () => {
         <div className="hobbies-and-rosets">
           <div className="hobbies">
             <h3>Hobiler</h3>
-            <div className="hobby">
-              <button className="close">
-                <IoCloseSharp />
-              </button>
+
+
+            <div className="hobby " onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}>
               <span className="hobby-tag">Kitap Okuma</span>
+              <button className={`close ${hover ? "Show" : ""}`}>
+                <IoCloseSharp className='closeikon' />
+              </button>
             </div>
             <div className="hobby">
               <span className="hobby-tag">Yüzme</span>
@@ -125,6 +129,39 @@ const ProfilePage: React.FC = () => {
             </div>
           </div>
 
+        </div>
+      </div>
+    </div>
+    <div className="historyPart">
+      <h2 style={{ color: "red", marginLeft: "30px" }}>Geçmiş Etkinlikler</h2>
+      <hr />
+      <div className="history-cards">
+        <div className="history-card">
+          <h3>Doğa Yürüyüşü</h3>
+          <p>Konum : Likya Yolu</p>
+          <p>Tarih: 15 Kasım 2025</p>
+          <p>Katılımcılar: 10</p>
+          <button className='evaluatebtn'>
+            Kişileri Değerlendir
+          </button>
+        </div>
+        <div className="history-card">
+          <h3>Voleybol</h3>
+          <p>Konum : Beach Park</p>
+          <p>Tarih: 22 Kasım 2025</p>
+          <p>Katılımcılar: 12</p>
+          <button className='evaluatebtn'>
+            Kişileri Değerlendir
+          </button>
+        </div>
+        <div className="history-card">
+          <h3>Doğa Yürüyüşü</h3>
+          <p>Konum : Likya Yolu</p>
+          <p>Tarih: 15 Kasım 2025</p>
+          <p>Katılımcılar: 10</p>
+          <button className='evaluatebtn'>
+            Kişileri Değerlendir
+          </button>
         </div>
       </div>
     </div>

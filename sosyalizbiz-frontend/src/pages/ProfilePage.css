@@ -126,3 +126,48 @@ svg{
     font-size: 3rem;
     color: gold;
 }
+
+.historyPart{
+    margin-top: 50px;
+    color: black;
+}
+
+.history-cards{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.history-card{
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.history-card h3{
+    width: 200px;
+    color: brown;
+}
+
+.history-card p{
+    width: 300px;
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.evaluatebtn{
+    background-color: #eb0d0d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+}

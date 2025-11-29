@@ -81,3 +81,41 @@
     color: black;
     font-size: 20px;
 }
+
+.closeikon{
+    color: rgb(251, 0, 0);
+    background-color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    position: relative;
+    left: 0px;
+    top: -2px;
+}
+
+.close{
+    position: relative;
+    left: 10px;
+    top: 3px;
+    opacity: 0;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+}
+
+.close.Show {
+    opacity: 1;
+}
+
+.Info {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+
