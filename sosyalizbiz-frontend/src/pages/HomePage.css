@@ -73,6 +73,26 @@
     width: 100%;
 }
 
+.chatbot{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 1450px;
+    top: 613px;
+}
+.chatbot img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.chatbot:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
 .card{
     height: 475px;
 }

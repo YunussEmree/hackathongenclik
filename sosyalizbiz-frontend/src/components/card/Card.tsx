@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Card.css';
 import { attendActivity, getCurrentUser, getLocation } from '../../utils/api';
+import { FaLocationArrow } from "react-icons/fa";
+
 
 interface CardProps {
     id: string;
@@ -97,7 +99,8 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
                             <h4>Yer</h4>
                         </div>
                         <div className="card-value">
-                            <p onClick={handleLocation}>{place}</p>
+                            <p >{place}</p>
+                            <FaLocationArrow className='loc' onClick={handleLocation} />
                         </div>
                     </div>
 

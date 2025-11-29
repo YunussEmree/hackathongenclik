@@ -6,6 +6,7 @@ import Filter from '../components/filter/Filter.tsx';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { getActivities } from '../utils/api.ts';
 import type { Activity } from '../types/api';
+import chatbotlogo from '../assets/chatbotlogo.jpg';
 
 
 const HomePage: React.FC = () => {
@@ -60,9 +61,12 @@ const HomePage: React.FC = () => {
                         onAttend={fetchActivities}
                     />
                 ))}
-
+                <div className="chatbot">
+                    <img src={chatbotlogo} alt="chatbot logo" className="chatbot-logo" />
+                </div>
 
             </div>
+
 
         </div>
     );
