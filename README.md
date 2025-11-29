@@ -1,6 +1,10 @@
 # Sosyaliz Biz
 
-Bu proje, Hackathon Gençlik etkinliği için geliştirilmektedir.
+Bu proje, Hackathon Gençlik etkinliği için geliştirilmektedir. 
+
+# Tema
+
+Genciz Biz uygulamasına entegre edilebilecek bir uygulama olması gerekmektedir. Projenin <b> sıfır yapay zeka </b> ile yapılması gerekmektedir.
 
 ## Projenin Ana Fikri
 
