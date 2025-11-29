@@ -35,9 +35,13 @@ const LoginPage: React.FC = () => {
                     <p className="forgot-password-link">Şifremi Unuttum</p>
                 </div>
                 <button className="login-button">Giriş Yap</button>
-                <button className="register-button">GSB Biz ile kayıt ol</button>
+                <a href="https://biz.gsb.gov.tr" target="_blank" rel="noopener noreferrer" style={{ width: '70%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}>
+                    <button className="register-button" style={{ width: '100%', marginTop: 0 }}>GSB Biz ile kayıt ol</button>
+                </a>
                 <p className="or-text">Veya</p>
-                <button className="google-login-button">Google ile giriş yap</button>
+                <a href="http://localhost:8080/oauth2/authorization/google" style={{ width: '70%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}>
+                    <button className="google-login-button" style={{ width: '100%' }}>Google ile giriş yap</button>
+                </a>
                 <p className="app-description-text">
                     * Sosyaliz Biz, insanların çeşitli etkinlikler (voleybol, basketbol gibi sporlar veya sinema, board games ve coffee talk gibi diğer sosyal aktiviteler) yapmak istediklerinde katılımcı bulma sorununu çözen bir uygulamadır. Kullanıcılar, bir etkinlik için ilan oluşturabilir ve kendi bölgelerindeki diğer ilgi duyan kişilerle kolayca eşleşerek bir araya gelebilirler.
                 </p>
