@@ -26,7 +26,7 @@ public class ActivityController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Activity>> getAllActivities() {
+    public ResponseEntity<List<Activity>> getAllActivities(@RequestParam(required = false) String sortBy) {
         try {
             return ResponseEntity.ok(activityService.getAllActivities(sortBy));
         } catch (ActivityNotFoundException ex) {
