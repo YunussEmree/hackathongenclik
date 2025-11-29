@@ -67,7 +67,7 @@ public class ActivityController {
     @DeleteMapping
     public ResponseEntity<Void> deleteActivity(@RequestParam UUID id) {
         try {
-            activityService.getActivity(id);
+            activityService.deleteActivity(id);
             return ResponseEntity.ok().build();
         } catch (ActivityNotFoundException ex) {
             return ResponseEntity.notFound().build();

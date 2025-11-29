@@ -86,6 +86,26 @@ export const getActivity = async (id: string): Promise<Activity> => {
     }
 };
 
+export const getOldActivities = async (): Promise<Activity[]> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/user/past-activity`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching old activities:", error);
+        throw error;
+    }
+};
+
 export const attendActivity = async (activityId: string, userId: string): Promise<void> => {
     try {
         console.log(`Attending activity ${activityId} for user ${userId}`);

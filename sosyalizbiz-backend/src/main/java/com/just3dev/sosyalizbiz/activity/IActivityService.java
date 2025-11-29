@@ -11,5 +11,6 @@ public interface IActivityService {
     Activity updateActivity(UUID id, Activity activity);
     Activity attendActivity(UUID activityId, String userId);
     void deleteActivity(UUID id);
+    List<Activity> getUserActivities(String userId);
 
 }
