@@ -56,6 +56,73 @@
   margin-top: 20px;
 }
 
-.stat-item{
+.hobbies{
+    margin-left: 100px;
+}
 
+.hobby{
+    background-color: #eb0d0d;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 15px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.hobby:hover{
+    background-color: #18b1e4;
+    color: white;
+    cursor: pointer;
+}
+
+.rating{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: start;
+    height: 40px;
+}
+
+.percentage{
+    font-weight: bold;
+    font-size: large;
+    margin: 0;
+}
+
+.profile-email{
+    margin-top: 0px;
+}
+
+.center{
+    width: 400px;
+}
+
+.hobbies-and-rosets{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.rosets{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.items{
+    display: flex;
+    flex-direction: row;
+}
+
+.roset-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+svg{
+    font-size: 3rem;
+    color: gold;
 }
