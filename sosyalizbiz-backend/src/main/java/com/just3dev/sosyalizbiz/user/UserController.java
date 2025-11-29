@@ -19,10 +19,12 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final ActivityRepository activityRepository;
+    private final IActivityService activityService;
 
-    public UserController(UserRepository userRepository, ActivityRepository activityRepository) {
+    public UserController(UserRepository userRepository, ActivityRepository activityRepository, IActivityService activityService) {
         this.userRepository = userRepository;
         this.activityRepository = activityRepository;
+        this.activityService = activityService;
     }
 
 
@@ -55,6 +57,13 @@ public class UserController {
         User user = userRepository.findById(principal.getAttribute("sub")).orElseThrow(() -> new RuntimeException("User not found"));
         List<Activity> pastActivities = activityRepository.getByActivityDateBeforeAndUsersContains(Date.from(new Date().toInstant()), user);
         return ResponseEntity.ok(pastActivities);
+    }
+
+    @GetMapping("/user-activities")
+    public ResponseEntity<List<Activity>> getUserActivities(@AuthenticationPrincipal OAuth2User principal) {
+        User user = userRepository.findById(principal.getAttribute("sub")).orElseThrow(() -> new RuntimeException("User not found"));
+        List<Activity> activities = activityService.getUserActivities(user.getId());
+        return ResponseEntity.ok(activities);
     }
 
 }

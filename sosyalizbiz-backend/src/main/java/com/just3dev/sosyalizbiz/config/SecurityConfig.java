@@ -27,7 +27,7 @@ public class SecurityConfig {
                                 .defaultSuccessUrl("http://localhost:3000/home")
                 )
                 .logout(logout ->
-                        logout
+                        logout  .logoutUrl("/logout")
                                 .logoutSuccessUrl("/")
                                 .invalidateHttpSession(true)
                                 .clearAuthentication(true)

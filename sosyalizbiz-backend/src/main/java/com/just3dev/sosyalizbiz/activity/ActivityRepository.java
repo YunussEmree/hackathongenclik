@@ -14,4 +14,5 @@ public interface ActivityRepository extends JpaRepository<Activity, UUID> {
     List<Activity> getByActivityDateBeforeAndUsersContains(Date dateTime, User user);
     List<Activity> getByActivityDateAfterAndUsersContains(Date dateTime, User user);
 
+    List<Activity> findAllByUsersContainsOrderByActivityDateDesc(User user);
 }

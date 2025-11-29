@@ -5,6 +5,7 @@ import com.just3dev.sosyalizbiz.activity.Activity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,7 +28,7 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "activity_id") }
     )
     @JsonIgnore
-    private List<Activity> activity;
+    private List<Activity> activity = new ArrayList<>();
 
     public User(String id, String name, String email) {
         this.id = id;

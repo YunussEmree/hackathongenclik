@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './HomePage.css';
 import NavbarPage from '../components/navbar/Navbar.tsx';
 import Card from '../components/card/Card.tsx';
@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
 
     useEffect(() => {
         fetchActivities();
-    }, [currentSort]);
+    }, []);
 
     const handleSortChange = (sort: string) => {
         setCurrentSort(sort);
