@@ -12,8 +12,8 @@ export interface Activity {
     personName: string; //
     currentAttendees: number;
     maxAttendees: number;
-    date: Date; 
-    createdAt: Date;
+    activityDate: Date; 
+    createdDate: Date;
     description: string;
     location: string;
     

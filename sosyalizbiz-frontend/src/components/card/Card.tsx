@@ -11,8 +11,20 @@ interface CardProps {
     createdAt: Date;
     content: string;
     place: string;
+    onAttend: () => void;
 }
-const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAttendees, maxAttendees, date, createdAt, place }) => {
+const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAttendees, maxAttendees, date, createdAt, place, onAttend }) => {
+
+    const handleAttend = () => {
+        getCurrentUser().then(currentuser => {
+            attendActivity(id, currentuser.id.toString()).then(() => {
+                onAttend();
+            });
+        }).catch(error => {
+            console.error("Error attending activity:", error);
+        });
+    };
+
     return (
         <>
             <div className="card" >
@@ -73,7 +85,7 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
 
                 </div>
                 <div className="card-button" >
-                    <button onClick={() => attendTheEvent(id)}>Etkinliğe Katıl</button>
+                    <button onClick={handleAttend}>Etkinliğe Katıl</button>
                 </div>
 
             </div>
@@ -82,13 +94,5 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
 
     );
 };
-
-function attendTheEvent(activityId: string) {
-    getCurrentUser().then(currentuser => {
-        attendActivity(activityId, currentuser.id.toString());
-    }).catch(error => {
-        console.error("Error attending activity:", error);
-    });
-}   
 
 export default Card;

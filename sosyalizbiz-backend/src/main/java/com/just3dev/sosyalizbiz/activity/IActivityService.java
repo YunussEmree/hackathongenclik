@@ -6,7 +6,7 @@ import java.util.UUID;
 public interface IActivityService {
 
     Activity getActivity(UUID id);
-    List<Activity> getAllActivities();
+    List<Activity> getAllActivities(String sortBy);
     Activity createActivity(CreateActivityDTO request);
     Activity updateActivity(UUID id, Activity activity);
     Activity attendActivity(UUID activityId, String userId);

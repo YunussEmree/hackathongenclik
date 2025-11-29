@@ -1,7 +1,23 @@
 import React from 'react';
 import './Filter.css';
 
-const Filter: React.FC = () => {
+interface FilterProps {
+    onSortChange: (sort: string) => void;
+}
+
+const Filter: React.FC<FilterProps> = ({ onSortChange }) => {
+    const handleSortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        onSortChange(event.target.id);
+    };
+
+    const options = [
+        { id: 'none', label: 'Seçiniz', defaultChecked: true },
+        { id: 'newestActivity', label: 'En Yeni Oluşturulan Aktiviteler' },
+        { id: 'oldestActivity', label: 'En Eski Oluşturulan Aktiviteler' },
+        { id: 'closestActivity', label: 'En Yakın Sürede Başlayacak Aktiviteler' },
+        { id: 'furthestActivity', label: 'En Geç Sürede Başlayacak Aktiviteler' }
+    ];
+
     return (
         <>
             <div className="select">
@@ -11,26 +27,18 @@ const Filter: React.FC = () => {
                     </svg>
                 </div>
                 <div className="options">
-                    <div title="Seçiniz">
-                        <input id="none" name="option" type="radio" defaultChecked />
-                        <label className="option" htmlFor="none" data-txt="Seçiniz" />
-                    </div>
-                    <div title="En Yeni Oluşturulan Aktivite">
-                        <input id="newestActivity" name="option" type="radio" defaultChecked />
-                        <label className="option" htmlFor="newestActivity" data-txt="En Yeni Oluşturulan Aktivite" />
-                    </div>
-                    <div title="En Eski Oluşturulan Aktivite">
-                        <input id="oldestActivity" name="option" type="radio" />
-                        <label className="option" htmlFor="oldestActivity" data-txt="En Eski Oluşturulan Aktivite" />
-                    </div>
-                    <div title="En Yakın Sürede Başlayacak Aktivite">
-                        <input id="closestActivity" name="option" type="radio" />
-                        <label className="option" htmlFor="closestActivity" data-txt="En Yakın Sürede Başlayacak Aktivite" />
-                    </div>
-                    <div title="En Geç Sürede Başlayacak Aktivite">
-                        <input id="furthestActivity" name="option" type="radio" />
-                        <label className="option" htmlFor="furthestActivity" data-txt="En Geç Sürede Başlayacak Aktivite" />
-                    </div>
+                    {options.map((option) => (
+                        <div title={option.label} key={option.id}>
+                            <input 
+                                id={option.id} 
+                                name="option" 
+                                type="radio" 
+                                defaultChecked={option.defaultChecked} 
+                                onChange={handleSortChange} 
+                            />
+                            <label className="option" htmlFor={option.id} data-txt={option.label} />
+                        </div>
+                    ))}
                 </div>
             </div>
         </>

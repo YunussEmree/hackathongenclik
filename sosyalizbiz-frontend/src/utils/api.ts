@@ -40,9 +40,10 @@ export const logout = async (): Promise<void> => {
     }
 };
 
-export const getActivities = async (): Promise<Activity[]> => {
+export const getActivities = async (sortBy?: string): Promise<Activity[]> => {
     try {
-        const response = await fetch(`${API_BASE_URL}/activities/all`, {
+        const url = sortBy ? `${API_BASE_URL}/activities/all?sortBy=${sortBy}` : `${API_BASE_URL}/activities/all`;
+        const response = await fetch(url, {
             method: "GET",
             credentials: "include",
             headers: {
