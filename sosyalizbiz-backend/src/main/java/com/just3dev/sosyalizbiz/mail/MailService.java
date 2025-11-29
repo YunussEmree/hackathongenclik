@@ -75,5 +75,18 @@ public class MailService implements IMailService{
         sendMailWithTimer(to, subject, content, reminderDate);
     }
 
+    public void sendNewActivityMail(String to, String eventname, Date activityDate) {
+        String subject = "Yeni Etkinlik Bildirimi: " + eventname;
+        String content = "Bölgene yakın yeni bir etkinlik var: " + eventname + " \n"
+                + "Etkinlik Tarihi ve Saati: " + activityDate.toString() + "\n"
+                + "Hemen katılmak için alttaki linke tıklayabilirsin!\n " +
+                "http://sosyalizbiz.com/activities\n\nSosyalizBiz ile kalın!";
+        try {
+            sendMail(to, subject, content);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

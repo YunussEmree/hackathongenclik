@@ -1,5 +1,6 @@
 package com.just3dev.sosyalizbiz.activity;
 
+import com.just3dev.sosyalizbiz.chatbot.ChatController;
 import com.just3dev.sosyalizbiz.mail.IMailService;
 import com.just3dev.sosyalizbiz.user.User;
 import com.just3dev.sosyalizbiz.user.UserNotFoundException;
@@ -16,11 +17,13 @@ public class ActivityService implements IActivityService {
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
     private final IMailService mailService;
+    private final ChatController chatController;
 
-    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, IMailService mailService) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, IMailService mailService, ChatController chatController) {
         this.activityRepository = activityRepository;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.chatController = chatController;
     }
 
     @Override
@@ -63,6 +66,17 @@ public class ActivityService implements IActivityService {
         activity.setActivityDate(request.getActivityDate());
 
         activityRepository.save(activity);
+
+        List<User> nearbyUsers;
+
+        try {
+            nearbyUsers = chatController.nearbyUsers(userRepository.findAll(), activity.getLocation());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create chat for the activity: " + e.getMessage());
+        }
+        for (User user : nearbyUsers) {
+            mailService.sendNewActivityMail(user.getEmail(), activity.getTitle(), activity.getActivityDate());
+        }
 
         return activity;
     }

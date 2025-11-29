@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -20,6 +21,7 @@ public class User {
     private String id;
     private String name;
     private String email;
+    private String location;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
@@ -30,13 +32,6 @@ public class User {
     @JsonIgnore
     private List<Activity> activity = new ArrayList<>();
 
-    public User(String id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-
-
     public UserDTO toDTO() {
         UserDTO dto = new UserDTO();
         dto.setId(this.id);
@@ -44,6 +39,5 @@ public class User {
         dto.setEmail(this.email);
         return dto;
     }
-
 
 }
