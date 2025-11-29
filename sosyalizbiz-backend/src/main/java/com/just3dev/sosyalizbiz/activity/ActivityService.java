@@ -48,6 +48,10 @@ public class ActivityService implements IActivityService {
         Activity activity = activityRepository.findById(activityId)
                 .orElseThrow(() -> new ActivityNotFoundException("Activity with id " + activityId + " not found."));
 
+        if(activity.getCurrentAttendees() >= activity.getMaxAttendees()) {
+            throw new ActivityAttendeeFullException("Activity with id " + activityId + " is already full.");
+        }
+
         activity.setCurrentAttendees(activity.getCurrentAttendees() + 1);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User with id " + userId + " not found."));
