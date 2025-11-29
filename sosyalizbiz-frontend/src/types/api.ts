@@ -12,13 +12,16 @@ export interface Activity {
     personName: string; //
     currentAttendees: number;
     maxAttendees: number;
-    activityDate: Date; 
+    activityDate: Date;
     createdDate: Date;
     description: string;
     location: string;
-    
+
 }
 
+export interface ApiResponse {
+    location: string;
+}
 
 export interface person {
     name: string;

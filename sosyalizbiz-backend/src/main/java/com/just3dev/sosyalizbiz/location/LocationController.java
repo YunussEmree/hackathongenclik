@@ -2,6 +2,7 @@ package com.just3dev.sosyalizbiz.location;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,7 +16,7 @@ public class LocationController {
     }
 
     @GetMapping
-    public String getLocationLink(String location) {
+    public String getLocationLink(@RequestParam String location) {
         return locationService.sendtoLocation(location);
     }
 

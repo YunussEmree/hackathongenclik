@@ -16,9 +16,7 @@ Sosyaliz Biz, insanların çeşitli etkinlikler (voleybol, basketbol gibi sporla
 
 Bu projede aşağıdaki teknolojiler kullanılmıştır:
 
--   **Backend:** Spring Boot, Java
--   **Build Tool:** Maven
--   **Frontend:** React.js
+- Java, Spring Boot, React, PostgreSQL
 
 ---
 
@@ -65,4 +63,4 @@ Backend'i komut satırından başlatmak için aşağıdaki adımları izleyin:
     ```bash
     npm run dev
     ```
-    Bu komut, React uygulamasını varsayılan olarak `5173` portunda çalıştıracak ve tarayıcıda açacaktır.
+    Bu komut, React uygulamasını varsayılan olarak `3000` portunda çalıştıracak ve tarayıcıda açacaktır.
