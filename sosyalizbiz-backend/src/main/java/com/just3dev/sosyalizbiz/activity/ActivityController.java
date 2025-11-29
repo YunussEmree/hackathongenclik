@@ -10,9 +10,9 @@ import java.util.UUID;
 @RequestMapping("/api/activities")
 public class ActivityController {
 
-    private final ActivityService activityService;
+    private final IActivityService activityService;
 
-    public ActivityController(ActivityService activityService) {
+    public ActivityController(IActivityService activityService) {
         this.activityService = activityService;
     }
 
