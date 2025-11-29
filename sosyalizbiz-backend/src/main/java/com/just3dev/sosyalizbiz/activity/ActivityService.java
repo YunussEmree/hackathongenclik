@@ -1,10 +1,11 @@
 package com.just3dev.sosyalizbiz.activity;
 
-import com.just3dev.sosyalizbiz.chatbot.ChatController;
+import com.just3dev.sosyalizbiz.chatbot.ChatBotService;
 import com.just3dev.sosyalizbiz.mail.IMailService;
 import com.just3dev.sosyalizbiz.user.User;
 import com.just3dev.sosyalizbiz.user.UserNotFoundException;
 import com.just3dev.sosyalizbiz.user.UserRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,13 @@ public class ActivityService implements IActivityService {
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
     private final IMailService mailService;
-    private final ChatController chatController;
+    private final ChatBotService chatBotService;
 
-    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, IMailService mailService, ChatController chatController) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, IMailService mailService, @Lazy ChatBotService chatBotService) {
         this.activityRepository = activityRepository;
         this.userRepository = userRepository;
         this.mailService = mailService;
-        this.chatController = chatController;
+        this.chatBotService = chatBotService;
     }
 
     @Override
@@ -70,7 +71,7 @@ public class ActivityService implements IActivityService {
         List<User> nearbyUsers;
 
         try {
-            nearbyUsers = chatController.nearbyUsers(userRepository.findAll(), activity.getLocation());
+            nearbyUsers = chatBotService.nearbyUsers(userRepository.findAll(), activity.getLocation());
         } catch (Exception e) {
             throw new RuntimeException("Failed to create chat for the activity: " + e.getMessage());
         }
