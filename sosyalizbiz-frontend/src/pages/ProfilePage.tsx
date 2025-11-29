@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProfilePage.css';
-//import { attendActivity } from '../utils/api';
 import Navbar from '../components/navbar/Navbar';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import { FaAward } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
+import type { Activity } from '../types/api';
+import { getUserActivities } from '../utils/api';
 
 
 function BasicRating() {
@@ -32,6 +33,24 @@ const values = {
 }
 const ProfilePage: React.FC = () => {
   const [hover, setHover] = useState(false);
+
+  const [activities, setActivities] = useState<Activity[]>([]);
+
+  const fetchUserActivities = async () => {
+    try {
+      const data = await getUserActivities();
+      setActivities(data);
+    } catch (error) {
+      console.error("Error fetching activities:", error);
+    }
+  };
+
+  useEffect(() => {  
+    fetchUserActivities();
+  }, []);
+
+
+
   return <>
     <Navbar />
     <div className="profile-page">
@@ -112,8 +131,6 @@ const ProfilePage: React.FC = () => {
           <div className="rosets">
             <h3>Rozetler</h3>
             <div className="items">
-
-
               <div className="roset-item">
                 <FaAward />
                 <span className="roset-tag">Voleybolcu</span>
@@ -136,33 +153,19 @@ const ProfilePage: React.FC = () => {
       <h2 style={{ color: "red", marginLeft: "30px" }}>Geçmiş Etkinlikler</h2>
       <hr />
       <div className="history-cards">
-        <div className="history-card">
-          <h3>Doğa Yürüyüşü</h3>
-          <p>Konum : Likya Yolu</p>
-          <p>Tarih: 15 Kasım 2025</p>
-          <p>Katılımcılar: 10</p>
+
+
+        {activities.map(activity => (
+          <div className='history-card'>
+          <h3>{activity.title}</h3>
+          <p>{activity.location}</p>
+          <p>{new Date(activity.activityDate).toLocaleDateString()}</p>
+          <p>{activity.currentAttendees} / {activity.maxAttendees}</p>
           <button className='evaluatebtn'>
             Kişileri Değerlendir
           </button>
         </div>
-        <div className="history-card">
-          <h3>Voleybol</h3>
-          <p>Konum : Beach Park</p>
-          <p>Tarih: 22 Kasım 2025</p>
-          <p>Katılımcılar: 12</p>
-          <button className='evaluatebtn'>
-            Kişileri Değerlendir
-          </button>
-        </div>
-        <div className="history-card">
-          <h3>Doğa Yürüyüşü</h3>
-          <p>Konum : Likya Yolu</p>
-          <p>Tarih: 15 Kasım 2025</p>
-          <p>Katılımcılar: 10</p>
-          <button className='evaluatebtn'>
-            Kişileri Değerlendir
-          </button>
-        </div>
+        ))}
       </div>
     </div>
   </>;
