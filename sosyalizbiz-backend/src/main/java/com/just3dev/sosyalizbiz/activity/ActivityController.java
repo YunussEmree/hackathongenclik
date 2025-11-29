@@ -18,28 +18,44 @@ public class ActivityController {
 
     @GetMapping
     public ResponseEntity<Activity> getActivity(@RequestParam UUID id) {
-        return ResponseEntity.ok(activityService.getActivity(id));
+        try {
+            return ResponseEntity.ok(activityService.getActivity(id));
+        } catch (ActivityNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Activity>> getAllActivities() {
-        return ResponseEntity.ok(activityService.getAllActivities());
+        try {
+            return ResponseEntity.ok(activityService.getAllActivities());
+        } catch (ActivityNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/attend")
     public ResponseEntity<Activity> attendActivity(@RequestParam String activityId, @RequestParam String userId) {
-        UUID activityUUID = UUID.fromString(activityId);
+        try {
+            UUID activityUUID = UUID.fromString(activityId);
 
-        System.out.println("ActivityController: attendActivity called with activityId=" + activityId + " and userId=" + userId);
-        Activity activity = activityService.attendActivity(activityUUID, userId);
-        return ResponseEntity.ok(activity);
+            Activity activity = activityService.attendActivity(activityUUID, userId);
+            return ResponseEntity.ok(activity);
+        } catch (ActivityNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        } catch (ActivityAttendeeFullException ex) {
+            return ResponseEntity.status(409).build(); // Conflict
+        }
     }
 
     @PostMapping
     public ResponseEntity<Activity> createActivity(@RequestBody CreateActivityDTO request) {
-        Activity activity = activityService.createActivity(request);
-
-        return ResponseEntity.ok(activity);
+        try {
+            Activity activity = activityService.createActivity(request);
+            return ResponseEntity.ok(activity);
+        } catch (ActivityAlreadyExistsException e) {
+            return ResponseEntity.status(409).build(); // Conflict
+        }
     }
 
     @PutMapping
@@ -50,8 +66,12 @@ public class ActivityController {
 
     @DeleteMapping
     public ResponseEntity<Void> deleteActivity(@RequestParam UUID id) {
-        activityService.deleteActivity(id);
-        return ResponseEntity.ok().build();
+        try {
+            activityService.getActivity(id);
+            return ResponseEntity.ok().build();
+        } catch (ActivityNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
