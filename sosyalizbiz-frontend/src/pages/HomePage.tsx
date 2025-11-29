@@ -21,6 +21,7 @@ const HomePage: React.FC = () => {
         }
     };
 
+
     useEffect(() => {
         fetchActivities();
     }, [currentSort]);
@@ -43,21 +44,21 @@ const HomePage: React.FC = () => {
                 </div>
             </div>
 
-            <div className='cards'> 
+            <div className='cards'>
                 {activities.map(activity => (
-                <Card
-                    key ={activity.id}
-                    id={activity.id}
-                    title={activity.title}
-                    personName={activity.personName}
-                    currentAttendees={activity.currentAttendees}
-                    maxAttendees={activity.maxAttendees}
-                    date={new Date(activity.activityDate)}
-                    createdAt={new Date(activity.createdDate)}
-                    content={activity.description}
-                    place={activity.location}
-                    onAttend={fetchActivities}
-                />
+                    <Card
+                        key={activity.id}
+                        id={activity.id}
+                        title={activity.title}
+                        personName={activity.personName}
+                        currentAttendees={activity.currentAttendees}
+                        maxAttendees={activity.maxAttendees}
+                        date={new Date(activity.activityDate)}
+                        createdAt={new Date(activity.createdDate)}
+                        content={activity.description}
+                        place={activity.location}
+                        onAttend={fetchActivities}
+                    />
                 ))}
 
 

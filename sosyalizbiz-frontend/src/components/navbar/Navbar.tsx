@@ -13,9 +13,6 @@ const Navbar: React.FC = () => {
                 <div className="home left-element">
                     <h3><a href="http://localhost:3000/home">Anasayfa</a></h3>
                 </div>
-                <div className="past left-element">
-                    <h3>Geçmiş Etkinlikler</h3>
-                </div>
                 <div className="profile left-element">
                     <h3><a href="http://localhost:3000/profile">Profil</a></h3>
                 </div>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Card.css';
-import { attendActivity, getCurrentUser } from '../../utils/api';
+import { attendActivity, getCurrentUser, getLocation } from '../../utils/api';
+
 interface CardProps {
     id: string;
     title: string;
@@ -15,6 +16,27 @@ interface CardProps {
 }
 const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAttendees, maxAttendees, date, createdAt, place, onAttend }) => {
 
+
+    const handleLocation = () => {
+        const placeUrl = fetchLocationUrl();
+        console.log(placeUrl);
+        window.open(placeUrl as unknown as string, '_blank');
+    };
+
+
+    const [location, setLocation] = useState<string>(String);
+
+    const fetchLocationUrl = async () => {
+        try {
+            const data = await getLocation(location);
+            setLocation(data);
+
+            console.log(data);
+        } catch (error) {
+            console.error("Error fetching activities:", error);
+        }
+    };
+
     const handleAttend = () => {
         getCurrentUser().then(currentuser => {
             attendActivity(id, currentuser.id.toString()).then(() => {
@@ -24,6 +46,7 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
             console.error("Error attending activity:", error);
         });
     };
+
 
     return (
         <>
@@ -74,14 +97,10 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
                             <h4>Yer</h4>
                         </div>
                         <div className="card-value">
-                            <p>{place}</p>
+                            <p onClick={handleLocation}>{place}</p>
                         </div>
                     </div>
 
-                    <div className="card-element">
-
-                        <div className='frame'>iframe</div>
-                    </div>
 
                 </div>
                 <div className="card-button" >

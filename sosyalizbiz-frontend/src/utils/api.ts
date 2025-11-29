@@ -1,6 +1,7 @@
 import type {
     Activity,
     GeneralErrorResponse,
+    ApiResponse,
 } from "../types/api";
 
 export class ApiError extends Error {
@@ -64,6 +65,27 @@ export const getActivities = async (sortBy?: string): Promise<Activity[]> => {
     }
 };
 
+export const getLocation = async (location: string): Promise<string> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/location?location=${location}`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data: ApiResponse = await response.json();
+        return data.location;
+    } catch (error) {
+        console.error("Error fetching locations:", error);
+        throw error;
+    }
+};
+
+
 export const getActivity = async (id: string): Promise<Activity> => {
     try {
         const response = await fetch(`${API_BASE_URL}/activities/${id}`, {
@@ -89,7 +111,7 @@ export const getActivity = async (id: string): Promise<Activity> => {
 export const attendActivity = async (activityId: string, userId: string): Promise<void> => {
     try {
         console.log(`Attending activity ${activityId} for user ${userId}`);
-        const response = await fetch(`${API_BASE_URL}/activities/attend?activityId=${activityId}&userId=${userId}`, { 
+        const response = await fetch(`${API_BASE_URL}/activities/attend?activityId=${activityId}&userId=${userId}`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -106,7 +128,7 @@ export const attendActivity = async (activityId: string, userId: string): Promis
     }
 };
 
-export const getCurrentUser = async (): Promise<{ email: string ; id: string ; name: string }> => {
+export const getCurrentUser = async (): Promise<{ email: string; id: string; name: string }> => {
     try {
         const response = await fetch(`${API_BASE_URL}/user/current-user`, {
             method: "GET",
@@ -114,7 +136,7 @@ export const getCurrentUser = async (): Promise<{ email: string ; id: string ; n
             headers: {
                 "Content-Type": "application/json",
             },
-        }); 
+        });
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -123,5 +145,5 @@ export const getCurrentUser = async (): Promise<{ email: string ; id: string ; n
     } catch (error) {
         console.error("Error fetching current user:", error);
         throw error;
-    }   
+    }
 };
