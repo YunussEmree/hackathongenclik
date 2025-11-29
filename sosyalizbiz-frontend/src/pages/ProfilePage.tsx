@@ -2,7 +2,6 @@ import React from 'react';
 import './ProfilePage.css';
 //import { attendActivity } from '../utils/api';
 import Navbar from '../components/navbar/Navbar';
-<<<<<<< HEAD
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import { FaAward } from "react-icons/fa";
@@ -18,9 +17,7 @@ function BasicRating() {
     </Box>
   );
 }
-=======
 
->>>>>>> origin/dev
 
 
 const values = {
