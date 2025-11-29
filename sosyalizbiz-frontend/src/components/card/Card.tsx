@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
 import './Card.css';
-import { attendActivity, getCurrentUser, getLocation } from '../../utils/api';
+import { attendActivity, getCurrentUser } from '../../utils/api';
 
 interface CardProps {
     id: string;
@@ -16,25 +15,9 @@ interface CardProps {
 }
 const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAttendees, maxAttendees, date, createdAt, place, onAttend }) => {
 
-
     const handleLocation = () => {
-        const placeUrl = fetchLocationUrl();
-        console.log(placeUrl);
-        window.open(placeUrl as unknown as string, '_blank');
-    };
-
-
-    const [location, setLocation] = useState<string>(String);
-
-    const fetchLocationUrl = async () => {
-        try {
-            const data = await getLocation(location);
-            setLocation(data);
-
-            console.log(data);
-        } catch (error) {
-            console.error("Error fetching activities:", error);
-        }
+        const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
+        window.open(url, '_blank');
     };
 
     const handleAttend = () => {

@@ -65,7 +65,7 @@ export const getActivities = async (sortBy?: string): Promise<Activity[]> => {
     }
 };
 
-export const getLocation = async (location: string): Promise<string> => {
+export const getLocation = async (location: string): Promise<ApiResponse> => {
     try {
         const response = await fetch(`${API_BASE_URL}/location?location=${location}`, {
             method: "GET",
@@ -78,7 +78,7 @@ export const getLocation = async (location: string): Promise<string> => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data: ApiResponse = await response.json();
-        return data.location;
+        return data;
     } catch (error) {
         console.error("Error fetching locations:", error);
         throw error;
