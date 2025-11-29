@@ -47,8 +47,8 @@ const HomePage: React.FC = () => {
                     personName={activity.personName}
                     currentAttendees={activity.currentAttendees}
                     maxAttendees={activity.maxAttendees}
-                    date={new Date(activity.date)}
-                    createdAt={new Date(activity.createdAt)}
+                    date={new Date(activity.activityDate)}
+                    createdAt={new Date(activity.createdDate)}
                     content={activity.description}
                     place={activity.location}
                     onAttend={fetchActivities}
