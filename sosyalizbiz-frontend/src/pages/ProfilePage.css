@@ -102,3 +102,27 @@
     flex-direction: column;
     align-items: baseline;
 }
+
+.rosets{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.items{
+    display: flex;
+    flex-direction: row;
+}
+
+.roset-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+svg{
+    font-size: 3rem;
+    color: gold;
+}

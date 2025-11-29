@@ -4,6 +4,8 @@ import './ProfilePage.css';
 import Navbar from '../components/navbar/Navbar';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import { FaAward } from "react-icons/fa";
+
 
 function BasicRating() {
   const starNumber = 4;
@@ -64,12 +66,6 @@ const ProfilePage: React.FC = () => {
               {values.upcomingActivity}
             </span>katılacağınız etkinlik var</p>
           </div>
-
-          <div className="stat-item">
-            <p> <span id="val">
-              {values.reliablilityScore}
-            </span> % güvenilirlik skoruna sahipsiniz</p>
-          </div>
         </div>
 
         <div className="hobbies-and-rosets">
@@ -106,14 +102,21 @@ const ProfilePage: React.FC = () => {
 
           <div className="rosets">
             <h3>Rozetler</h3>
-            <div className="roset-item">
-              <span className="roset-tag">Voleybolcu</span>
-            </div>
-            <div className="roset-item">
-              <span className="roset-tag">Stratejist</span>
-            </div>
-            <div className="roset-item">
-              <span className="roset-tag">Köpekbalığı</span>
+            <div className="items">
+
+
+              <div className="roset-item">
+                <FaAward />
+                <span className="roset-tag">Voleybolcu</span>
+              </div>
+              <div className="roset-item">
+                <FaAward />
+                <span className="roset-tag">Stratejist</span>
+              </div>
+              <div className="roset-item">
+                <FaAward />
+                <span className="roset-tag">Köpekbalığı</span>
+              </div>
             </div>
           </div>
 
