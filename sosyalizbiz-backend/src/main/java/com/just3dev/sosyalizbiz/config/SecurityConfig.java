@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2Login(oauth2Login ->
                         oauth2Login
-                                .defaultSuccessUrl("http://localhost:5173")
+                                .defaultSuccessUrl("http://localhost:3000/home")
                 )
                 .logout(logout ->
                         logout
