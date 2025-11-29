@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
             <NavbarPage />
             <div className="dynamicIsland ">
                 <div className="search-bar">
-                    <FaMagnifyingGlass />
+                    <FaMagnifyingGlass className='magnifier' />
 
                     <input type="text" placeholder="Etkinlik Ara..." />
                 </div>

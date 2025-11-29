@@ -5,6 +5,7 @@ import Navbar from '../components/navbar/Navbar';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import { FaAward } from "react-icons/fa";
+import { IoCloseSharp } from "react-icons/io5";
 
 
 function BasicRating() {
@@ -73,6 +74,9 @@ const ProfilePage: React.FC = () => {
           <div className="hobbies">
             <h3>Hobiler</h3>
             <div className="hobby">
+              <button className="close">
+                <IoCloseSharp />
+              </button>
               <span className="hobby-tag">Kitap Okuma</span>
             </div>
             <div className="hobby">
