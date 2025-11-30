@@ -109,9 +109,9 @@ const ProfilePage: React.FC = () => {
                         <div className="hobby " onMouseEnter={() => setHover(true)}
                              onMouseLeave={() => setHover(false)}>
                             <span className="hobby-tag">Kitap Okuma</span>
-                            <button className={`close ${hover ? "Show" : ""}`}>
+                            {/* <button className={`close ${hover ? "Show" : ""}`}>
                                 <IoCloseSharp className='closeikon'/>
-                            </button>
+                            </button> */} //TODO: buton hoverlanmamışken bile yer kapladığı için kötü gözüküyor bu yüzden kapatıldı.
                         </div>
                         <div className="hobby">
                             <span className="hobby-tag">Yüzme</span>
