@@ -25,6 +25,7 @@ const HomePage: React.FC = () => {
         }
     };
 
+    const handleShow = async () => { console.log("a"); setModal(true); setIcon(false) }
 
     useEffect(() => {
         fetchActivities();
@@ -64,11 +65,11 @@ const HomePage: React.FC = () => {
                         onAttend={fetchActivities}
                     />
                 ))}
-                <div className="chatbot" onClick={() => { setModal(false); setIcon(true) }}>
-                    <img src={chatbotlogo} alt="chatbot logo" className={`chatbot-logo ${icon ? "Show" : ""}`} />
+                <div className={`ikon ${icon ? "Show" : ""}`} onClick={() => { console.log("a"); setModal(true); setIcon(false) }}>
+                    <img src={chatbotlogo} alt="chatbot logo" className='chatbot-logo' />
                 </div>
 
-                <div className={`chatbot-modal ${modal ? "" : "Show"}`}>
+                <div className={`chatbot-modal ${modal ? "Show" : ""}`}>
                     <Chatbot />
                 </div>
 

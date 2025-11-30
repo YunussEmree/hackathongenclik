@@ -21,7 +21,10 @@ const Modal = () => {
     };
 
     return (
-        <>
+
+        <div className="container">
+
+
             <AppName>
                 <div id='head' >
                     <span className='head'>SosyalizBiz </span>ChatBot
@@ -29,7 +32,7 @@ const Modal = () => {
             </AppName>
             <div>
                 <Headers>
-                    <div>
+                    <div className='gereetings'>
                         <h1 id='greeting'>Merhaba, Hoşgeldin.</h1>
                     </div>
                     <div>
@@ -40,24 +43,26 @@ const Modal = () => {
             <div className="chat-container">
                 <Chat >
                     {chatMessages.map((message, index) => (
-                        <div key={index} className="chat-message">
-                            {message}
+                        <div key={index} className="user-area">
+                            <p className="user-message">
+                                {message}
+                            </p>
                         </div>
                     ))}
                 </Chat>
             </div>
             <div className="searchBar-container">
                 <SearchBar>
-                    <textarea
-                        className="search-input"
-                        placeholder="Enter your text"
+                    <input type="text" className="search-input"
+                        placeholder="Bir şey yazınız..."
                         value={inputValue}
-                        onChange={handleInputChange}
-                    />
-                    <Button textContent="Send" handleClick={handleSend} />
+                        onChange={handleInputChange} />
+
+                    <Button textContent="Gönder" handleClick={handleSend} />
                 </SearchBar>
             </div>
-        </>
+        </div>
+
     );
 };
 
