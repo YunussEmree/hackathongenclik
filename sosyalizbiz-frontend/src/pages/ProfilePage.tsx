@@ -4,7 +4,6 @@ import Navbar from '../components/navbar/Navbar';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import { FaAward } from "react-icons/fa";
-import { IoCloseSharp } from "react-icons/io5";
 import type { Activity } from '../types/api';
 import { getUserActivities } from '../utils/api';
 import { FiAlertTriangle } from "react-icons/fi";
@@ -111,7 +110,9 @@ const ProfilePage: React.FC = () => {
                             <span className="hobby-tag">Kitap Okuma</span>
                             {/* <button className={`close ${hover ? "Show" : ""}`}>
                                 <IoCloseSharp className='closeikon'/>
-                            </button> */} //TODO: buton hoverlanmamışken bile yer kapladığı için kötü gözüküyor bu yüzden kapatıldı.
+                            </button> */} 
+                            {/*//TODO: buton hoverlanmamışken bile yer kapladığı için kötü gözüküyor bu yüzden kapatıldı.
+                                */}
                         </div>
                         <div className="hobby">
                             <span className="hobby-tag">Yüzme</span>
