@@ -12,7 +12,6 @@
   align-items: center;
   gap: 12px;
   z-index: 1200;
-  animation: toast-drop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .error-toast-content {
@@ -48,19 +47,4 @@
   font-size: 16px;
   padding-bottom: 35px;
   cursor: pointer;
-}
-
-
-@keyframes toast-drop {
-  0% {
-    transform: translate(-50%, -140%);
-    opacity: 0;
-  }
-  70% {
-    transform: translate(-50%, 6px);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, 0);
-  }
 }
