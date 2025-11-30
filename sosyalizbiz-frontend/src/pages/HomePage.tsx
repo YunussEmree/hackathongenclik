@@ -13,7 +13,6 @@ import Chatbot from '../components/chatbot/modal.tsx';
 
 const HomePage: React.FC = () => {
     const [modal, setModal] = useState(false);
-    const [icon, setIcon] = useState(true);
     const [activities, setActivities] = useState<Activity[]>([]);
     const [currentSort, setCurrentSort] = useState<string | undefined>(undefined);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -72,7 +71,7 @@ const HomePage: React.FC = () => {
                         onAttend={fetchActivities}
                     />
                 ))}
-                <div className={`ikon ${icon ? "Show" : ""}`} onClick={() => { console.log("a"); setModal(true); setIcon(false) }}>
+                <div className="ikon Show" onClick={() => { console.log("a"); setModal(!modal); }}>
                     <img src={chatbotlogo} alt="chatbot logo" className='chatbot-logo' />
                 </div>
 
