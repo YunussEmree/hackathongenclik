@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -30,7 +31,7 @@ public class Activity {
     private String description;
 
     @ManyToMany(mappedBy = "activity", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<User> users; //attendees
+    private List<User> users = new ArrayList<>(); // attendees
 
 //    @ManyToOne
 //    private User creater;
@@ -56,7 +57,15 @@ public class Activity {
 
 
     public void addAttendee(User user) {
-        this.users.add(user);
+        if (user.getActivity() == null) {
+            user.setActivity(new ArrayList<>());
+        }
+        if (!this.users.contains(user)) {
+            this.users.add(user);
+        }
+        if (!user.getActivity().contains(this)) {
+            user.getActivity().add(this);
+        }
         this.currentAttendees = this.users.size();
     }
 

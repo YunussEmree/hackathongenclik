@@ -22,4 +22,16 @@ public class ChatBotTools {
         return activityService.getAllActivities("newestActivity");
     }
 
+
+//    //TODO: Bu tool tam olarak çalışmıyor, düzeltilmesi lazım.
+//    @Tool(description = "Şu an aktif olan kullanıcı bilgilerini detaylı şekilde getirir. ")
+//    public UserDTO getUserInfo(@AuthenticationPrincipal OAuth2User principal) {
+//
+//        User user = userRepository.findById(principal.getAttribute("sub")).get();
+//        UserDTO userDTO = user.toDTO();
+//
+//        return userDTO;
+//    }
+
+
 }

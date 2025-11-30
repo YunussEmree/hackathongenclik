@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Card.css';
 import { attendActivity, getCurrentUser, getLocation } from '../../utils/api';
 import { FaLocationArrow } from "react-icons/fa";
+import ErrorToast from '../errortoast/ErrorToast';
 
 
 interface CardProps {
@@ -17,41 +18,30 @@ interface CardProps {
     onAttend: () => void;
 }
 const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAttendees, maxAttendees, date, createdAt, place, onAttend }) => {
-
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleLocation = () => {
-        const placeUrl = fetchLocationUrl();
-        console.log(placeUrl);
-        window.open(placeUrl as unknown as string, '_blank');
-    };
-
-
-    const [location, setLocation] = useState<string>(String);
-
-    const fetchLocationUrl = async () => {
-        try {
-            const data = await getLocation(location);
-            setLocation(data);
-
-            console.log(data);
-        } catch (error) {
-            console.error("Error fetching activities:", error);
-        }
+        const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
+        window.open(url, '_blank');
     };
 
     const handleAttend = () => {
+        setErrorMessage(null);
         getCurrentUser().then(currentuser => {
             attendActivity(id, currentuser.id.toString()).then(() => {
                 onAttend();
+            }).catch(error => {
+                setErrorMessage(error instanceof Error ? error.message : "Etkinlige katilirken bir sorun olustu.");
             });
-        }).catch(error => {
-            console.error("Error attending activity:", error);
         });
     };
 
 
     return (
         <>
+            {errorMessage ? (
+                <ErrorToast message={errorMessage} onClose={() => setErrorMessage(null)} />
+            ) : null}
             <div className="card" >
                 <div className="card-header">
                     <h2>{title}</h2>

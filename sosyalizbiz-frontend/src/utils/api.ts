@@ -65,7 +65,7 @@ export const getActivities = async (sortBy?: string): Promise<Activity[]> => {
     }
 };
 
-export const getLocation = async (location: string): Promise<string> => {
+export const getLocation = async (location: string): Promise<ApiResponse> => {
     try {
         const response = await fetch(`${API_BASE_URL}/location?location=${location}`, {
             method: "GET",
@@ -78,7 +78,7 @@ export const getLocation = async (location: string): Promise<string> => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data: ApiResponse = await response.json();
-        return data.location;
+        return data;
     } catch (error) {
         console.error("Error fetching locations:", error);
         throw error;
@@ -127,8 +127,28 @@ export const getActivity = async (id: string): Promise<Activity> => {
     }
 };
 
-export const attendActivity = async (activityId: string, userId: string): Promise<void> => {
+export const getUserActivities = async (): Promise<Activity[]> => {
     try {
+        const response = await fetch(`${API_BASE_URL}/user/user-activities`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching user activities:", error);
+        throw error;
+    }
+};
+
+export const attendActivity = async (activityId: string, userId: string): Promise<void> => {
+    
         console.log(`Attending activity ${activityId} for user ${userId}`);
         const response = await fetch(`${API_BASE_URL}/activities/attend?activityId=${activityId}&userId=${userId}`, {
             method: "POST",
@@ -139,12 +159,9 @@ export const attendActivity = async (activityId: string, userId: string): Promis
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if(response.status === 409) throw new Error(`Zaten bu etkinlige katildiniz.`);
+            else throw new Error(`HTTP error! status: ${response.status}`);
         }
-    } catch (error) {
-        console.error("Error attending activity:", error);
-        throw error;
-    }
 };
 
 export const getCurrentUser = async (): Promise<{ email: string; id: string; name: string }> => {
@@ -163,6 +180,28 @@ export const getCurrentUser = async (): Promise<{ email: string; id: string; nam
         return data;
     } catch (error) {
         console.error("Error fetching current user:", error);
+        throw error;
+    }
+};
+
+export const createActivity = async (activityData: Partial<Activity>): Promise<Activity> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/activities`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(activityData),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error creating activity:", error);
         throw error;
     }
 };

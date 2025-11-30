@@ -170,4 +170,113 @@ svg{
     border-radius: 8px;
     padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.evaluatebtn:hover{
+    background-color: #c70a0a;
+}
+
+.popup-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+
+.popup-content{
+    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+    padding: 35px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 550px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.popup-content h2{
+    color: #eb0d0d;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #eb0d0d;
+    padding-bottom: 10px;
+}
+
+.popup-close{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #eb0d0d;
+    transition: color 0.3s;
+}
+
+.popup-close:hover{
+    color: #c70a0a;
+}
+
+.participants-list{
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.participant-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    background: white;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    gap: 15px;
+}
+
+.participant-item:hover{
+    background: #fff5f5;
+}
+
+.participant-item span{
+    font-weight: 500;
+    color: #333;
+    font-size: 1.05rem;
+    flex: 1;
+}
+
+.participant-rating-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.report-icon {
+    font-size: 1.5em;
+    color: #eb0d0d;
+    cursor: pointer;
+    transition: color 0.3s;
 }

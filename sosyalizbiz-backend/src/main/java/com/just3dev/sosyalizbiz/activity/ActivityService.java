@@ -1,8 +1,11 @@
 package com.just3dev.sosyalizbiz.activity;
 
+import com.just3dev.sosyalizbiz.chatbot.ChatBotService;
 import com.just3dev.sosyalizbiz.mail.IMailService;
 import com.just3dev.sosyalizbiz.user.User;
+import com.just3dev.sosyalizbiz.user.UserNotFoundException;
 import com.just3dev.sosyalizbiz.user.UserRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +18,13 @@ public class ActivityService implements IActivityService {
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
     private final IMailService mailService;
+    private final ChatBotService chatBotService;
 
-    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, IMailService mailService) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, IMailService mailService, @Lazy ChatBotService chatBotService) {
         this.activityRepository = activityRepository;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.chatBotService = chatBotService;
     }
 
     @Override
@@ -63,6 +68,17 @@ public class ActivityService implements IActivityService {
 
         activityRepository.save(activity);
 
+        List<User> nearbyUsers;
+
+        try {
+            nearbyUsers = chatBotService.nearbyUsers(userRepository.findAll(), activity.getLocation());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create chat for the activity: " + e.getMessage());
+        }
+        for (User user : nearbyUsers) {
+            mailService.sendNewActivityMail(user.getEmail(), activity.getTitle(), activity.getActivityDate());
+        }
+
         return activity;
     }
 
@@ -75,14 +91,21 @@ public class ActivityService implements IActivityService {
             throw new ActivityAttendeeFullException("Activity with id " + activityId + " is already full.");
         }
 
-        activity.setCurrentAttendees(activity.getCurrentAttendees() + 1);
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User with id " + userId + " not found."));
+                .orElseThrow(() -> new UserNotFoundException("User with id " + userId + " not found."));
 
-        activity.addAttendee( user );
-        mailService.sendReminderMail(user.getEmail(), activity.getTitle() ,activity.getActivityDate());
+        if(activity.getUsers().contains(user)) {
+            throw new UserAlreadyAttendingException("User with id " + userId + " is already attending the activity with id " +  activityId + ".");
+        }
+        else {
+            activity.setCurrentAttendees(activity.getCurrentAttendees() + 1);
+            activity.addAttendee( user );
+            mailService.sendReminderMail(user.getEmail(), activity.getTitle() ,activity.getActivityDate());
 
-        activityRepository.save(activity);
+            userRepository.save(user);
+            activityRepository.save(activity);
+        }
+
         return activity;
     }
 
@@ -100,6 +123,13 @@ public class ActivityService implements IActivityService {
         } else {
             throw new ActivityNotFoundException("Activity with id " + id + " does not exist.");
         }
+    }
+
+    @Override
+    public List<Activity> getUserActivities(String userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User with id " + userId + " not found."));
+        return activityRepository.findAllByUsersContainsOrderByActivityDateDesc(user);
     }
 
 }

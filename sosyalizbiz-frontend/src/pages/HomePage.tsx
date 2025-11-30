@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './HomePage.css';
 import NavbarPage from '../components/navbar/Navbar.tsx';
 import Card from '../components/card/Card.tsx';
 import Filter from '../components/filter/Filter.tsx';
+import ErrorToast from '../components/errortoast/ErrorToast.tsx';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { getActivities } from '../utils/api.ts';
 import type { Activity } from '../types/api';
@@ -15,13 +16,16 @@ const HomePage: React.FC = () => {
     const [icon, setIcon] = useState(true);
     const [activities, setActivities] = useState<Activity[]>([]);
     const [currentSort, setCurrentSort] = useState<string | undefined>(undefined);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const fetchActivities = async () => {
         try {
             const data = await getActivities(currentSort);
             setActivities(data);
+            setErrorMessage(null);
         } catch (error) {
             console.error("Error fetching activities:", error);
+            setErrorMessage(error instanceof Error ? error.message : "Etkinlikler getirilirken bir sorun olustu.");
         }
     };
 
@@ -29,7 +33,7 @@ const HomePage: React.FC = () => {
 
     useEffect(() => {
         fetchActivities();
-    }, [currentSort]);
+    }, [fetchActivities]);
 
     const handleSortChange = (sort: string) => {
         setCurrentSort(sort);
@@ -37,6 +41,9 @@ const HomePage: React.FC = () => {
 
     return (
         <div className='container'>
+            {errorMessage ? (
+                <ErrorToast message={errorMessage} onClose={() => setErrorMessage(null)} />
+            ) : null}
             <NavbarPage />
             <div className="dynamicIsland ">
                 <div className="search-bar">

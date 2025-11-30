@@ -1,5 +1,6 @@
 package com.just3dev.sosyalizbiz.activity;
 
+import com.just3dev.sosyalizbiz.user.UserNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,10 @@ public class ActivityController {
             return ResponseEntity.notFound().build();
         } catch (ActivityAttendeeFullException ex) {
             return ResponseEntity.status(409).build(); // Conflict
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(404).build();
+        } catch (UserAlreadyAttendingException ex) {
+            return ResponseEntity.status(409).build(); // Conflict
         }
     }
 
@@ -67,7 +72,7 @@ public class ActivityController {
     @DeleteMapping
     public ResponseEntity<Void> deleteActivity(@RequestParam UUID id) {
         try {
-            activityService.getActivity(id);
+            activityService.deleteActivity(id);
             return ResponseEntity.ok().build();
         } catch (ActivityNotFoundException ex) {
             return ResponseEntity.notFound().build();
