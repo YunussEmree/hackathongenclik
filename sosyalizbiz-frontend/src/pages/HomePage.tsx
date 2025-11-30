@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
 
     useEffect(() => {
         fetchActivities();
-    }, [fetchActivities]);
+    }, []);
 
     const handleSortChange = (sort: string) => {
         setCurrentSort(sort);

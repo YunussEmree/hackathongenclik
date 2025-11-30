@@ -87,7 +87,8 @@ export const getLocation = async (location: string): Promise<ApiResponse> => {
 
 export const sendMessage = async (message: string): Promise<string> => {
     try {
-        const response = await fetch(`${API_BASE_URL}/chatbot/message`, {
+        console.log("Sending message to API:", message);
+        const response = await fetch(`${API_BASE_URL}/chatbot/chat`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -98,6 +99,7 @@ export const sendMessage = async (message: string): Promise<string> => {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
+        console.log("Received response from API:", response);
         const data = await response.json();
         return data.message;
     } catch (error) {
@@ -118,7 +120,6 @@ export const getActivity = async (id: string): Promise<Activity> => {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const data = await response.json();
         return data;
     } catch (error) {

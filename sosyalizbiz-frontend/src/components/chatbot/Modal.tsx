@@ -5,6 +5,7 @@ import Headers from './Headers';
 import SearchBar from './SearchBar';
 import { useState } from 'react';
 import './Modal.css';
+import { sendMessage } from '../../utils/api';
 
 const Modal = () => {
     const [inputValue, setInputValue] = useState('');
@@ -15,9 +16,18 @@ const Modal = () => {
     };
 
     const handleSend = () => {
+        console.log("input value: " + inputValue);
         if (inputValue.trim() === '') return;
         setChatMessages([...chatMessages, inputValue]);
         setInputValue('');
+
+        console.log("Sending message to API:", inputValue);
+        sendMessage(inputValue).then(responseMessage => {
+            console.log("Received response from API:", responseMessage);
+            setChatMessages(prevMessages => [...prevMessages, responseMessage]);
+        }).catch(error => {
+            console.error("Error sending message:", error);
+        });
     };
 
     return (

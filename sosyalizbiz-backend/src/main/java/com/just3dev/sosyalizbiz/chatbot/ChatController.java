@@ -12,9 +12,11 @@ public class ChatController {
         this.chatBotService = chatBotService;
     }
 
-    @PostMapping(path = "/chat", consumes = "text/plain", produces = "text/plain")
-    public String chat(@RequestBody String message) {
-        return chatBotService.chat(message);
+    @PostMapping(path = "/chat", consumes = "application/json", produces = "application/json")
+    public ChatResponseDTO chat(@RequestBody String message) {
+        ChatResponseDTO chatResponseDTO = new ChatResponseDTO();
+        chatResponseDTO.setMessage(chatBotService.chat(message));
+        return chatResponseDTO;
     }
 
     @GetMapping("/rate-issue")
