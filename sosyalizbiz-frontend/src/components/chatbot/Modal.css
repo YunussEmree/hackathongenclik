@@ -1,0 +1,95 @@
+#head{
+    display: flex;
+    color: red;
+    font-size: 1.5rem;
+    align-items: center;
+    font-weight: bold;
+    justify-content: center;
+}
+
+#greeting{
+    color: black;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+#greetingmessage{
+    color: rgb(90, 89, 89);
+    font-size: 1rem;
+}
+
+.chat{
+    width: 300px;
+    height: 300px;
+    left: 1450px;
+    top: 613px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.searchBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+Button{
+        border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #fa0707;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+.search-input{
+    color: black;
+    padding: 5px 10px;
+    background-color: transparent;
+    border-radius: 15px;
+    margin-right: 8px;
+}
+
+.user-message{
+    margin: 10px;
+    padding: 5px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background: transparent;
+    width: fit-content;
+    border: 2px solid black;
+    color: black;
+    border-radius: 15px 0px 15px 15px;
+}
+
+.chat-container{
+    overflow-y: scroll;
+    box-sizing: content-box;
+}
+
+.chat-container::-webkit-scrollbar {
+    display: none; 
+}
+
+.bot-message{
+    margin: 10px;
+    padding: 5px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background: gray;
+    max-width: 80%;
+    border: 2px solid black;
+    color: black;
+    border-radius: 0px 15px 15px 15px;
+}
+
+.user-area{
+    display: flex;
+    justify-content: end;
+}

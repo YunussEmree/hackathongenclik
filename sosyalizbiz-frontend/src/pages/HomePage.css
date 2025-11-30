@@ -73,6 +73,57 @@
     width: 100%;
 }
 
+.chatbot-modal{
+    opacity: 0;
+}
+
+.chatbot-modal.Show{
+    opacity: 1;
+    position: absolute;
+    align-items: center;
+    right: 42%;
+    top: 20%;
+    background: #ffffff;
+    border-radius: 25px;
+    padding: 15px;
+    border: 5px solid black;
+}
+.chatbot-logo{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 1450px;
+    top: 613px;
+    opacity: 1;
+}
+
+.ikon.Show{
+  width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 1450px;
+    top: 613px;
+    opacity: 1;
+
+}
+
+.ikon{
+    opacity: 0;
+}
+
+.chatbot img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.chatbot:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
 .card{
     height: 475px;
 }
@@ -106,16 +157,28 @@
     opacity: 1;
 }
 
-.Info {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top:0;
-    left:0;
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+.modal{
+    position: relative;
+    left: 10px;
+    top: 3px;
     opacity: 0;
+    padding: 0;
+    
 }
+
+.modal.Show {
+    opacity: 1;
+    width: 400px;
+    height: 300px;
+    background-color: whitesmoke;
+}
+
+.container{
+    height: 500px;
+    justify-content: space-between;
+}
+
+.greetings{
+}
+
 

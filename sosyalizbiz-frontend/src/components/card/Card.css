@@ -7,6 +7,7 @@
     color: black;
     margin: 20px;
     padding: 15px;
+    height: 420px;
 }
 
 .card-header {
@@ -24,6 +25,8 @@
     margin: 0;
     font-size: 1.5em;
     padding: 0;
+    font-family: cursive;
+    color: #8b0000
 }
 
 .card-content {
@@ -50,6 +53,8 @@
 .card-value {
     color: #666;
     padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .card-label h4, .card-value p {
@@ -76,3 +81,14 @@
     cursor: pointer;
     font-size: 1em;
 }
+
+.loc{
+    cursor: pointer;
+    color: #0d85d5;
+    font-size: 1.2em;
+    margin-left: 15px;
+}
+
+.loc:hover{
+
+color: #073c5f;}

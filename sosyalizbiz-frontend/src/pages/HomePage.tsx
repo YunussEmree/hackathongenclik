@@ -7,9 +7,13 @@ import ErrorToast from '../components/errortoast/ErrorToast.tsx';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { getActivities } from '../utils/api.ts';
 import type { Activity } from '../types/api';
+import chatbotlogo from '../assets/chatbotlogo.jpg';
+import Chatbot from '../components/chatbot/modal.tsx';
 
 
 const HomePage: React.FC = () => {
+    const [modal, setModal] = useState(false);
+    const [icon, setIcon] = useState(true);
     const [activities, setActivities] = useState<Activity[]>([]);
     const [currentSort, setCurrentSort] = useState<string | undefined>(undefined);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -25,6 +29,7 @@ const HomePage: React.FC = () => {
         }
     };
 
+    const handleShow = async () => { console.log("a"); setModal(true); setIcon(false) }
 
     useEffect(() => {
         fetchActivities();
@@ -67,9 +72,16 @@ const HomePage: React.FC = () => {
                         onAttend={fetchActivities}
                     />
                 ))}
+                <div className={`ikon ${icon ? "Show" : ""}`} onClick={() => { console.log("a"); setModal(true); setIcon(false) }}>
+                    <img src={chatbotlogo} alt="chatbot logo" className='chatbot-logo' />
+                </div>
 
+                <div className={`chatbot-modal ${modal ? "Show" : ""}`}>
+                    <Chatbot />
+                </div>
 
             </div>
+
 
         </div>
     );
