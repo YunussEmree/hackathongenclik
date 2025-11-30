@@ -164,3 +164,25 @@ export const getCurrentUser = async (): Promise<{ email: string; id: string; nam
         throw error;
     }
 };
+
+export const createActivity = async (activityData: Partial<Activity>): Promise<Activity> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/activities`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(activityData),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error creating activity:", error);
+        throw error;
+    }
+};
