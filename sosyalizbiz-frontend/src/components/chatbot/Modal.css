@@ -1,0 +1,28 @@
+#head{
+    display: flex;
+    color: red;
+    font-size: 1.5rem;
+    align-items: center;
+    font-weight: bold;
+    justify-content: center;
+}
+
+#greeting{
+    color: black;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+#greetingmessage{
+    color: rgb(90, 89, 89);
+    font-size: 1rem;
+}
+
+.chat{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 1450px;
+    top: 613px;
+    cursor: pointer;
+    background-color: violet;
+}

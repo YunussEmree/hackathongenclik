@@ -73,13 +73,19 @@
     width: 100%;
 }
 
-.chatbot{
+.chatbot-logo.Show{
     width: 50px;
     height: 50px;
     position: fixed;
     left: 1450px;
     top: 613px;
+    opacity: 1;
 }
+
+.chatbot-logo{
+    opacity: 0;
+}
+
 .chatbot img{
     width: 100%;
     height: 100%;
@@ -126,6 +132,21 @@
     opacity: 1;
 }
 
+.modal{
+    position: relative;
+    left: 10px;
+    top: 3px;
+    opacity: 0;
+    padding: 0;
+    
+}
+
+.modal.Show {
+    opacity: 1;
+    width: 400px;
+    height: 300px;
+    background-color: whitesmoke;
+}
 .Info {
     position: absolute;
     height: 100%;

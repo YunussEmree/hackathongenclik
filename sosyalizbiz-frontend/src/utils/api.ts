@@ -85,7 +85,26 @@ export const getLocation = async (location: string): Promise<string> => {
     }
 };
 
-
+export const sendMessage = async (message: string): Promise<string> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/chatbot/message`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message }),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.message;
+    } catch (error) {
+        console.error("Error sending message:", error);
+        throw error;
+    }
+};
 export const getActivity = async (id: string): Promise<Activity> => {
     try {
         const response = await fetch(`${API_BASE_URL}/activities/${id}`, {
