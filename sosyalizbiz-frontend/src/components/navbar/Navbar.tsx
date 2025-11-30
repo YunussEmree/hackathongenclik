@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { createActivity } from "../../utils/api";
 
+import logo from "../../assets/logo.png";
+
 import "./Navbar.css";
 
 type NavbarProps = {
@@ -105,6 +107,9 @@ const Navbar: React.FC<NavbarProps> = ({ onActivityCreated }) => {
             ) : null}
             <div className="nav-content">
                 <div className="left-side">
+                    <div className="logo"> 
+                        <img src={logo} style={{"paddingLeft": "10px", "rotate": "90deg"}} alt="SosyalizBiz Logo" width="40" height="40" />
+                    </div>
                     <h2>SosyalizBiz</h2>
                 </div>
                 <div className="right-side">
