@@ -129,7 +129,7 @@ export const getUserActivities = async (): Promise<Activity[]> => {
 };
 
 export const attendActivity = async (activityId: string, userId: string): Promise<void> => {
-    try {
+    
         console.log(`Attending activity ${activityId} for user ${userId}`);
         const response = await fetch(`${API_BASE_URL}/activities/attend?activityId=${activityId}&userId=${userId}`, {
             method: "POST",
@@ -140,12 +140,9 @@ export const attendActivity = async (activityId: string, userId: string): Promis
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if(response.status === 409) throw new Error(`Zaten bu etkinlige katildiniz.`);
+            else throw new Error(`HTTP error! status: ${response.status}`);
         }
-    } catch (error) {
-        console.error("Error attending activity:", error);
-        throw error;
-    }
 };
 
 export const getCurrentUser = async (): Promise<{ email: string; id: string; name: string }> => {

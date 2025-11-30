@@ -95,7 +95,7 @@ public class ActivityService implements IActivityService {
                 .orElseThrow(() -> new UserNotFoundException("User with id " + userId + " not found."));
 
         if(activity.getUsers().contains(user)) {
-            throw new RuntimeException("User with id " + userId + " is already attending the activity with id " +  activityId + ".");
+            throw new UserAlreadyAttendingException("User with id " + userId + " is already attending the activity with id " +  activityId + ".");
         }
         else {
             activity.setCurrentAttendees(activity.getCurrentAttendees() + 1);

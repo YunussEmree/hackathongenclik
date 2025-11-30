@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import './Card.css';
+import ErrorToast from '../errortoast/ErrorToast';
 import { attendActivity, getCurrentUser } from '../../utils/api';
 
 interface CardProps {
@@ -14,6 +16,7 @@ interface CardProps {
     onAttend: () => void;
 }
 const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAttendees, maxAttendees, date, createdAt, place, onAttend }) => {
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleLocation = () => {
         const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
@@ -21,18 +24,22 @@ const Card: React.FC<CardProps> = ({ id, title, content, personName, currentAtte
     };
 
     const handleAttend = () => {
+        setErrorMessage(null);
         getCurrentUser().then(currentuser => {
             attendActivity(id, currentuser.id.toString()).then(() => {
                 onAttend();
+            }).catch(error => {
+                setErrorMessage(error instanceof Error ? error.message : "Etkinlige katilirken bir sorun olustu.");
             });
-        }).catch(error => {
-            console.error("Error attending activity:", error);
         });
     };
 
 
     return (
         <>
+            {errorMessage ? (
+                <ErrorToast message={errorMessage} onClose={() => setErrorMessage(null)} />
+            ) : null}
             <div className="card" >
                 <div className="card-header">
                     <h2>{title}</h2>
