@@ -79,14 +79,15 @@
 
 .chatbot-modal.Show{
     opacity: 1;
-    position: absolute;
+    position: fixed;
     align-items: center;
-    right: 42%;
-    top: 20%;
+    right: 5%;
+    top: 10%;
     background: #ffffff;
     border-radius: 25px;
     padding: 15px;
     border: 5px solid black;
+    z-index: 8;
 }
 .chatbot-logo{
     width: 50px;

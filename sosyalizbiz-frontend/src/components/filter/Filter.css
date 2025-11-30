@@ -6,6 +6,7 @@
   color: white;
   overflow: hidden;
   width: 251px;
+  z-index: -5;
 }
 
 .selected {

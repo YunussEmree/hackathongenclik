@@ -46,7 +46,7 @@ const Modal = () => {
                         <h1 id='greeting'>Merhaba, Hoşgeldin.</h1>
                     </div>
                     <div>
-                        <h3 id='greetingmessage'>Bugün Nasıl Yardımcı Olabilirim?</h3>
+                        <h3 id='greetingmessage'>Sana Nasıl Yardımcı Olabilirim?</h3>
                     </div>
                 </Headers>
             </div>
