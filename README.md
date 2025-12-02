@@ -1,6 +1,10 @@
 # Sosyaliz Biz
 
-Bu proje, Hackathon Gençlik etkinliği için geliştirilmektedir. 
+Bu proje, gençlik hackathonu için geliştirilmiştir.
+
+# Derece
+
+100 + kişinin katıldığı etkinlikte 2 ön elemeden başarıyla geçmiş olsak da maalesef ilk 3'e giremedik. Fakat bunu uzun süre düşünüp neyi nerde hatalı yaptığımızı, eksiklerimizin ne olduğunu anladık ve daha önemlisi ilk hackathon tecrübemizi edinmiş olduk. Sonraki hackathonlarımızda hedefimiz sıralamaya oynamak.
 
 # Tema
 
